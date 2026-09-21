@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect width="1200" height="630" fill="none" stroke="#eaeaea" stroke-width="2"/>
+  <rect x="80" y="80" width="56" height="56" rx="16" fill="#1f5f4e"/>
+  <text x="152" y="122" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="34" font-weight="700" fill="#111111">Clarity</text>
+  <text x="80" y="280" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="56" font-weight="700" fill="#111111">Understand yourself better.</text>
+  <text x="80" y="340" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="28" fill="#666666">Evidence-informed self-assessments for personality,</text>
+  <text x="80" y="380" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="28" fill="#666666">wellbeing, work, relationships, and everyday life.</text>
+</svg>

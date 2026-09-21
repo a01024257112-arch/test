@@ -1,0 +1,106 @@
+:root {
+  /* Color */
+  --color-bg: #ffffff;
+  --color-bg-subtle: #fafafa;
+  --color-text: #111111;
+  --color-text-secondary: #666666;
+  --color-border: #eaeaea;
+  --color-border-strong: #d4d4d4;
+  --color-accent: #1f5f4e; /* restrained deep teal-green */
+  --color-accent-hover: #163f34;
+  --color-accent-contrast: #ffffff;
+  --color-focus: #1f5f4e;
+
+  /* Evidence badges — muted, distinct, not alarming */
+  --badge-a-bg: #eaf3ef; --badge-a-text: #1f5f4e; --badge-a-border: #c7ddd4;
+  --badge-b-bg: #eef1f7; --badge-b-text: #33466b; --badge-b-border: #ccd6e8;
+  --badge-c-bg: #f6f2ea; --badge-c-text: #6b5530; --badge-c-border: #e3d6bd;
+  --badge-d-bg: #f2f2f2; --badge-d-text: #555555; --badge-d-border: #dcdcdc;
+
+  /* Status */
+  --color-danger-bg: #fdf1ef;
+  --color-danger-text: #8a2c1d;
+  --color-danger-border: #f2c9c0;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Type */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.75rem;
+  --leading-tight: 1.2;
+  --leading-normal: 1.55;
+
+  /* Layout */
+  --content-width: 720px;
+  --page-width: 1200px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --touch-target: 48px;
+
+  --shadow-sm: 0 1px 2px rgba(17, 17, 17, 0.06);
+  --shadow-md: 0 4px 16px rgba(17, 17, 17, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: #121212;
+    --color-bg-subtle: #191919;
+    --color-text: #f2f2f2;
+    --color-text-secondary: #a3a3a3;
+    --color-border: #2a2a2a;
+    --color-border-strong: #3a3a3a;
+    --color-accent: #4fae93;
+    --color-accent-hover: #6cc2a9;
+    --color-accent-contrast: #0d0d0d;
+
+    --badge-a-bg: #16261f; --badge-a-text: #7fd2b5; --badge-a-border: #234636;
+    --badge-b-bg: #171b24; --badge-b-text: #9db3dd; --badge-b-border: #253150;
+    --badge-c-bg: #211c12; --badge-c-text: #e0c489; --badge-c-border: #423419;
+    --badge-d-bg: #1c1c1c; --badge-d-text: #c2c2c2; --badge-d-border: #333333;
+
+    --color-danger-bg: #2a1712;
+    --color-danger-text: #f2a390;
+    --color-danger-border: #4a2419;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #121212;
+  --color-bg-subtle: #191919;
+  --color-text: #f2f2f2;
+  --color-text-secondary: #a3a3a3;
+  --color-border: #2a2a2a;
+  --color-border-strong: #3a3a3a;
+  --color-accent: #4fae93;
+  --color-accent-hover: #6cc2a9;
+  --color-accent-contrast: #0d0d0d;
+
+  --badge-a-bg: #16261f; --badge-a-text: #7fd2b5; --badge-a-border: #234636;
+  --badge-b-bg: #171b24; --badge-b-text: #9db3dd; --badge-b-border: #253150;
+  --badge-c-bg: #211c12; --badge-c-text: #e0c489; --badge-c-border: #423419;
+  --badge-d-bg: #1c1c1c; --badge-d-text: #c2c2c2; --badge-d-border: #333333;
+
+  --color-danger-bg: #2a1712;
+  --color-danger-text: #f2a390;
+  --color-danger-border: #4a2419;
+}

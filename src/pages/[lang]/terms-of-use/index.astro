@@ -1,0 +1,41 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { liveLocales, siteName } from '../../../i18n/config';
+export function getStaticPaths() { return liveLocales.map((l) => ({ params: { lang: l.code } })); }
+const { lang } = Astro.params;
+---
+<ArticleLayout
+  lang={lang!}
+  title="Terms of Use"
+  description={`The terms governing use of ${siteName}.`}
+  path="terms-of-use/"
+  lastUpdated="2026-09-21"
+  breadcrumbs={[{ name: 'Home', href: `/${lang}/` }, { name: 'Terms of Use', href: `/${lang}/terms-of-use/` }]}
+>
+  <h2>Acceptance of terms</h2>
+  <p>By using {siteName}, you agree to these Terms of Use, our <a href={`/${lang}/privacy-policy/`}>Privacy Policy</a>, and our <a href={`/${lang}/medical-disclaimer/`}>Medical Disclaimer</a>.</p>
+
+  <h2>What {siteName} is</h2>
+  <p>{siteName} provides self-assessment tools for personal reflection on personality, wellbeing, work, relationships, and lifestyle topics. Tests are clearly labeled with an evidence level. No test constitutes medical advice, diagnosis, or treatment. See our Medical Disclaimer for details.</p>
+
+  <h2>Eligibility</h2>
+  <p>Our content targets the general adult population unless a specific test page states a different validated age range. If you are a minor, please use this site with the guidance of a parent, guardian, or another trusted adult, particularly for any mental-health-related content.</p>
+
+  <h2>Acceptable use</h2>
+  <p>You agree not to: scrape or systematically reproduce our test content, questions, or scoring logic for republication; misrepresent an evidence-informed or entertainment quiz as clinically validated; attempt to interfere with the operation of the site; or use the site for any unlawful purpose.</p>
+
+  <h2>Intellectual property</h2>
+  <p>Original content on this site — including editorial text, custom test items, and design — is owned by {siteName} unless otherwise noted. Where we use public-domain or permissively licensed instruments (for example, IPIP personality items or the GAD-7), we attribute the original source on the relevant test page; those underlying instruments remain governed by their own original licensing terms.</p>
+
+  <h2>No warranty</h2>
+  <p>This site and its content are provided "as is," without warranties of any kind, express or implied, including but not limited to accuracy, completeness, or fitness for a particular purpose. Self-assessment results are informational only.</p>
+
+  <h2>Limitation of liability</h2>
+  <p>To the maximum extent permitted by law, {siteName} and its contributors are not liable for any damages arising from your use of, or inability to use, this site or its content, including decisions made based on a self-assessment result.</p>
+
+  <h2>Changes</h2>
+  <p>We may update these terms from time to time. Continued use of the site after changes are posted constitutes acceptance of the revised terms.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about these terms can be sent through our <a href={`/${lang}/contact/`}>contact page</a>.</p>
+</ArticleLayout>

@@ -1,0 +1,33 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { liveLocales, siteName } from '../../../i18n/config';
+export function getStaticPaths() { return liveLocales.map((l) => ({ params: { lang: l.code } })); }
+const { lang } = Astro.params;
+---
+<ArticleLayout
+  lang={lang!}
+  title="Cookie Policy"
+  description={`How ${siteName} uses cookies and browser storage.`}
+  path="cookie-policy/"
+  lastUpdated="2026-09-21"
+  breadcrumbs={[{ name: 'Home', href: `/${lang}/` }, { name: 'Cookie Policy', href: `/${lang}/cookie-policy/` }]}
+>
+  <h2>We minimize cookies by design</h2>
+  <p>{siteName} does not require cookies to take a test, view results, or browse the site. We do not use advertising or cross-site tracking cookies.</p>
+
+  <h2>Browser storage we do use</h2>
+  <table>
+    <thead><tr><th>Mechanism</th><th>Purpose</th><th>Contains personal data?</th></tr></thead>
+    <tbody>
+      <tr><td><code>localStorage</code> — test progress</td><td>Lets you resume a test after closing the tab or refreshing.</td><td>No — stays on your device only.</td></tr>
+      <tr><td><code>localStorage</code> — test results</td><td>Lets your results page display your result after you finish a test.</td><td>No — stays on your device only.</td></tr>
+      <tr><td><code>localStorage</code> — language preference</td><td>Remembers your chosen language on return visits.</td><td>No.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Analytics</h2>
+  <p>If analytics are enabled, they record anonymous, aggregate page and funnel events (see our <a href={`/${lang}/privacy-policy/`}>Privacy Policy</a>) and are configured not to track individual answers or results.</p>
+
+  <h2>Managing storage</h2>
+  <p>You can clear <code>localStorage</code> for this site at any time through your browser's site settings. Doing so will remove any saved test progress, saved results, and language preference.</p>
+</ArticleLayout>

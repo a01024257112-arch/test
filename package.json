@@ -1,0 +1,24 @@
+{
+  "name": "clarity-assessments",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "build:unchecked": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test:data": "tsx scripts/validate-registry.ts"
+  },
+  "dependencies": {
+    "astro": "^4.16.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/node": "^26.6.2",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
+  }
+}

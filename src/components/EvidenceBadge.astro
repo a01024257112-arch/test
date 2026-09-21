@@ -1,0 +1,15 @@
+---
+import type { EvidenceLevel } from '../lib/types';
+
+export interface Props { level: EvidenceLevel; }
+const { level } = Astro.props;
+
+const labels: Record<EvidenceLevel, string> = {
+  A: 'Validated screening tool',
+  B: 'Public-domain scale',
+  C: 'Evidence-informed',
+  D: 'Entertainment quiz',
+};
+const classes: Record<EvidenceLevel, string> = { A: 'badge-a', B: 'badge-b', C: 'badge-c', D: 'badge-d' };
+---
+<span class={`badge ${classes[level]}`}>{labels[level]}</span>

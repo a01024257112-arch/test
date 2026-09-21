@@ -1,0 +1,34 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { liveLocales, siteName } from '../../../i18n/config';
+export function getStaticPaths() { return liveLocales.map((l) => ({ params: { lang: l.code } })); }
+const { lang } = Astro.params;
+---
+<ArticleLayout
+  lang={lang!}
+  title="Medical Disclaimer"
+  description={`${siteName}'s tests are for informational and self-reflection purposes only and are not a substitute for professional medical or mental-health advice.`}
+  path="medical-disclaimer/"
+  lastUpdated="2026-09-21"
+  breadcrumbs={[{ name: 'Home', href: `/${lang}/` }, { name: 'Medical Disclaimer', href: `/${lang}/medical-disclaimer/` }]}
+>
+  <div class="crisis-box">
+    <h4>If you are in crisis</h4>
+    <p style="margin-bottom:0;">If you are having thoughts of harming yourself, please seek immediate help. In the United States, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), available 24/7. Outside the US, <a href="https://findahelpline.com" rel="noopener">Find A Helpline</a> lists crisis lines by country. In an emergency, contact your local emergency services.</p>
+  </div>
+
+  <h2>Not a diagnostic service</h2>
+  <p>{siteName} provides self-assessment tools, including some based on published, validated clinical screening instruments (labeled "Validated screening tool" on the relevant test pages). No test on this site — including validated screening tools — diagnoses any medical or mental-health condition. A screening result indicates that your responses show a pattern that research associates with a higher or lower likelihood of a condition; it is not a clinical determination.</p>
+
+  <h2>No clinician-patient relationship</h2>
+  <p>Using this site does not create a doctor-patient, therapist-client, or any other clinical relationship between you and {siteName} or its contributors. We do not provide medical advice, treatment recommendations, or emergency services.</p>
+
+  <h2>When to seek professional care</h2>
+  <p>If a result suggests a pattern worth discussing, if your symptoms are affecting your daily life, or if you have any concern about your physical or mental health regardless of what a test says, please consult a qualified healthcare professional. Only a qualified professional — using a full history, clinical judgment, and often additional evaluation — can provide an actual diagnosis or treatment plan.</p>
+
+  <h2>Evidence levels matter</h2>
+  <p>Not every test on this site is a clinical instrument. We label every test with an evidence level — validated screening tool, public-domain psychological scale, evidence-informed self-assessment, or entertainment quiz — precisely so you can calibrate how much weight to put on a result. Evidence-informed and entertainment tests are self-reflection tools only and carry no clinical claim whatsoever.</p>
+
+  <h2>Editorial and reviewer standards</h2>
+  <p>Where a test page names a reviewer, that person has reviewed the content described. Where no reviewer is named, the page will say "Editorial review pending" rather than imply a credential we do not have. See our <a href={`/${lang}/editorial-policy/`}>Editorial Policy</a>.</p>
+</ArticleLayout>

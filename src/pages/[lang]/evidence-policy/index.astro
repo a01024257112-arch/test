@@ -1,0 +1,46 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { liveLocales, siteName } from '../../../i18n/config';
+export function getStaticPaths() { return liveLocales.map((l) => ({ params: { lang: l.code } })); }
+const { lang } = Astro.params;
+---
+<ArticleLayout
+  lang={lang!}
+  title="Evidence Policy"
+  description={`How ${siteName} classifies, verifies, and labels the evidence behind every test.`}
+  path="evidence-policy/"
+  lastUpdated="2026-09-21"
+  breadcrumbs={[{ name: 'Home', href: `/${lang}/` }, { name: 'Evidence Policy', href: `/${lang}/evidence-policy/` }]}
+>
+  <h2>Four evidence levels</h2>
+  <table>
+    <thead><tr><th>Label</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><strong>A — Validated screening tool</strong></td><td>Built from a specific, named, published instrument validated against clinical outcomes, with confirmed reproduction rights.</td></tr>
+      <tr><td><strong>B — Public-domain psychological scale</strong></td><td>Built from an established, publicly available research instrument (e.g., IPIP), used for personality or trait self-report rather than clinical screening.</td></tr>
+      <tr><td><strong>C — Evidence-informed self-assessment</strong></td><td>Original questions written by our editorial team, informed by published research concepts, but not themselves a peer-reviewed or validated instrument.</td></tr>
+      <tr><td><strong>D — Entertainment quiz</strong></td><td>Lightweight and for fun; carries no evidence claim.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Before we publish a Level A or B test</h2>
+  <p>We verify, and record in our internal registry, each of the following before any validated or public-domain instrument goes live:</p>
+  <ul>
+    <li>The original instrument name, authors, and publication.</li>
+    <li>Its official source and, where applicable, DOI.</li>
+    <li>Its copyright and licensing status, including whether commercial use is permitted.</li>
+    <li>Its scoring method and cut-point rules, taken directly from the original publication.</li>
+    <li>The population and age range it was validated on.</li>
+    <li>Whether a validated translation exists for any language we plan to publish it in.</li>
+  </ul>
+  <p><strong>If we cannot verify licensing, translation rights, scoring, or cutoffs, we do not publish the test.</strong> It is marked "requires review" internally and held back — regardless of how far along development is, and regardless of whether it would help us reach a target test count. Quality and accuracy take priority over catalog size.</p>
+
+  <h2>What we never invent</h2>
+  <p>We do not invent test questions, clinical scoring thresholds, diagnostic criteria, reliability or validity statistics, citations, author names, or reviewer credentials. Where a piece of information cannot be verified, the relevant page says so explicitly (for example, "Editorial review pending") rather than filling the gap.</p>
+
+  <h2>Language for clinical results</h2>
+  <p>Validated screening tools never diagnose. Result pages use language like "your responses show a pattern that may be consistent with…" rather than "you have…", explain what the score does and does not mean, name the source instrument, and link to relevant crisis resources where appropriate. See our <a href={`/${lang}/medical-disclaimer/`}>Medical Disclaimer</a>.</p>
+
+  <h2>See also</h2>
+  <p><a href={`/${lang}/methodology/`}>Methodology</a> — how tests are built and scored. <a href={`/${lang}/editorial-policy/`}>Editorial Policy</a> — how content is written and reviewed.</p>
+</ArticleLayout>

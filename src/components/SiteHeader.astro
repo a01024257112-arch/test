@@ -1,0 +1,45 @@
+---
+import { siteName, locales, defaultLocale } from '../i18n/config';
+import { categories } from '../lib/categories';
+
+export interface Props { lang: string; }
+const { lang } = Astro.props;
+const l = lang || defaultLocale;
+---
+<header class="site-header">
+  <div class="shell">
+    <a class="brand" href={`/${l}/`} aria-label={`${siteName} home`}>
+      <span class="brand-mark" aria-hidden="true"></span>
+      {siteName}
+    </a>
+    <nav aria-label="Primary">
+      <ul class="main-nav">
+        {categories.slice(0, 4).map((c) => (
+          <li><a href={`/${l}/${c.slug}/`}>{c.name}</a></li>
+        ))}
+        <li><a href={`/${l}/guides/`}>Guides</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <form action={`/${l}/search/`} method="get" role="search" aria-label="Site search" style="display:none;">
+        <input type="search" name="q" />
+      </form>
+      <label class="sr-only" for="lang-select">Language</label>
+      <select id="lang-select" data-lang-select style="border:1px solid var(--color-border-strong); border-radius:8px; padding:8px 10px; font-size:0.85rem; background:var(--color-bg); color:var(--color-text);">
+        {locales.map((loc) => (
+          <option value={loc.code} selected={loc.code === l} disabled={!loc.live}>
+            {loc.label}{!loc.live ? ' (coming soon)' : ''}
+          </option>
+        ))}
+      </select>
+    </div>
+  </div>
+</header>
+<script>
+  const select = document.querySelector('[data-lang-select]') as HTMLSelectElement | null;
+  select?.addEventListener('change', () => {
+    const target = select.value;
+    const path = window.location.pathname.replace(/^\/[a-zA-Z-]+\//, `/${target}/`);
+    window.location.href = path;
+  });
+</script>

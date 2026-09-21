@@ -1,0 +1,37 @@
+---
+import ArticleLayout from '../../../../layouts/ArticleLayout.astro';
+import TestCard from '../../../../components/TestCard.astro';
+import { liveLocales } from '../../../../i18n/config';
+import { guides, getGuide } from '../../../../data/guides';
+import { testDefinitions } from '../../../../data/tests/index';
+
+export function getStaticPaths() {
+  return liveLocales.flatMap((l) => guides.map((g) => ({ params: { lang: l.code, slug: g.slug } })));
+}
+const { lang, slug } = Astro.params;
+const guide = getGuide(slug!)!;
+const related = guide.relatedTestSlugs.map((s) => testDefinitions.find((t) => t.slug === s)).filter((t): t is NonNullable<typeof t> => !!t);
+---
+<ArticleLayout
+  lang={lang!}
+  title={guide.title}
+  description={guide.description}
+  path={`guides/${guide.slug}/`}
+  eyebrow="Guide"
+  lastUpdated={guide.lastUpdated}
+  breadcrumbs={[{ name: 'Home', href: `/${lang}/` }, { name: 'Guides', href: `/${lang}/guides/` }, { name: guide.title, href: `/${lang}/guides/${guide.slug}/` }]}
+>
+  <div class="callout">
+    <p style="margin-bottom:0;">{guide.answer}</p>
+  </div>
+  <div set:html={guide.bodyHtml} />
+
+  {related.length > 0 && (
+    <>
+      <h2>Related assessments</h2>
+      <div class="card-grid" style="margin-top:var(--space-4);">
+        {related.map((t) => <TestCard test={t} lang={lang!} />)}
+      </div>
+    </>
+  )}
+</ArticleLayout>

@@ -1,0 +1,29 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { liveLocales, siteName } from '../../../i18n/config';
+export function getStaticPaths() { return liveLocales.map((l) => ({ params: { lang: l.code } })); }
+const { lang } = Astro.params;
+---
+<ArticleLayout
+  lang={lang!}
+  title="Editorial Policy"
+  description={`How ${siteName} writes, reviews, and labels content.`}
+  path="editorial-policy/"
+  lastUpdated="2026-09-21"
+  breadcrumbs={[{ name: 'Home', href: `/${lang}/` }, { name: 'Editorial Policy', href: `/${lang}/editorial-policy/` }]}
+>
+  <h2>Who writes our content</h2>
+  <p>Test descriptions, guides, and category pages are written by our editorial team with reference to the primary sources listed on each page. Where a test page names a reviewer, that reflects an actual review of that content. Where no reviewer is yet named, the page states "Editorial review pending" — we do not attribute review to anyone who has not actually performed it.</p>
+
+  <h2>No fabricated expertise</h2>
+  <p>We do not invent expert endorsements, reviewer credentials, or affiliations. If a claim of medical or scientific review cannot be substantiated, we do not make it.</p>
+
+  <h2>Sourcing standard</h2>
+  <p>For factual and scientific claims, we prefer, in order: official organizations (e.g., WHO), original peer-reviewed academic publications, peer-reviewed systematic reviews, major universities, and recognized professional organizations. We avoid relying on secondary blogs as primary evidence for clinical claims.</p>
+
+  <h2>Language standards for health content</h2>
+  <p>Health-related result content is written to describe patterns, not diagnoses ("your responses show a pattern that may be consistent with…" rather than "you have…"), and always states what a result does and does not mean, its limitations, and when professional support may help.</p>
+
+  <h2>Corrections</h2>
+  <p>If you believe something on this site is inaccurate, please see our <a href={`/${lang}/corrections-policy/`}>Corrections Policy</a> for how to report it and how we handle corrections.</p>
+</ArticleLayout>

@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
+import TestCard from '../../../../../components/TestCard.astro';
+import '../../../../../styles/results.css';
+import { liveLocales, siteName } from '../../../../../i18n/config';
+import { getCategory } from '../../../../../lib/categories';
+import { testDefinitions, getTestBySlug } from '../../../../../data/tests/index';
+
+export function getStaticPaths() {
+  return liveLocales.flatMap((l) => testDefinitions.map((t) => ({ params: { lang: l.code, slug: t.slug } })));
+}
+
+const { lang, slug } = Astro.params;
+const test = getTestBySlug(slug!)!;
+const category = getCategory(test.category);
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const path = `tests/${test.slug}/results/`;
+const landingUrl = `${site}/${lang}/tests/${test.slug}/`;
+
+const related = test.relatedTestSlugs
+  .map((s) => testDefinitions.find((t) => t.slug === s))
+  .filter((t): t is NonNullable<typeof t> => !!t);
+
+const isDimensioned = test.scoring.method === 'per-dimension-sum';
+---
+<BaseLayout
+  lang={lang!}
+  title={`Your ${test.title} Result`}
+  description={`Your personal result for the ${test.title} test.`}
+  path={path}
+  noindex={true}
+>
+  <div class="shell section-tight">
+    <Breadcrumbs items={[
+      { name: 'Home', href: `/${lang}/` },
+      { name: category.name, href: `/${lang}/${category.slug}/` },
+      { name: test.title, href: `/${lang}/tests/${test.slug}/` },
+      { name: 'Your result', href: `/${lang}/${path}` },
+    ]} />
+  </div>
+
+  <div data-results-root data-slug={test.slug}>
+    <div data-result-empty class="result-empty shell" hidden>
+      <h1>No saved result found</h1>
+      <p style="color:var(--color-text-secondary); max-width:480px; margin:0 auto var(--space-6);">
+        We couldn't find a result for this test in your browser's local storage. Results are never stored on a
+        server, so if you're on a different device or cleared your browser data, you'll need to retake the test.
+      </p>
+      <a class="btn btn-primary" href={`/${lang}/tests/${test.slug}/take/`}>Take the test</a>
+    </div>
+
+    <div data-result-filled hidden>
+      <section class="result-hero">
+        <div class="shell prose">
+          <p class="eyebrow">{test.title} — Your Result</p>
+          {!isDimensioned ? (
+            <>
+              <p class="result-score" data-fill="score-wrap">Score: <span data-fill="score">–</span> / {test.scoring.maxPossible}</p>
+              {test.resultBands.map((b) => (
+                <div data-band-content data-band-id={b.id}>
+                  <h1>{b.label}</h1>
+                  <p class="result-interpretation">{b.shortInterpretation}</p>
+                </div>
+              ))}
+            </>
+          ) : (
+            <h1>Your personality snapshot</h1>
+          )}
+          <div class="result-actions">
+            <button class="btn btn-secondary" type="button" data-action="retake" data-href={`/${lang}/tests/${test.slug}/take/`}>Retake test</button>
+            <button class="btn btn-secondary" type="button" data-action="copy-link" data-href={landingUrl}>Copy link to this test</button>
+            <button class="btn btn-secondary" type="button" data-action="share" data-href={landingUrl} data-title={`${test.title} — ${siteName}`}>Share this test</button>
+          </div>
+        </div>
+      </section>
+
+      {test.crisisNoteRequired && (
+        <div class="shell">
+          <div class="crisis-box prose">
+            <h4>If you are in crisis</h4>
+            <p>
+              If you are having thoughts of harming yourself, please reach out for immediate help. In the United
+              States, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), available 24/7. Outside the
+              US, the <a href="https://findahelpline.com" rel="noopener">Find A Helpline</a> directory lists
+              crisis lines by country.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {!isDimensioned ? (
+        <section class="section">
+          <div class="shell prose">
+            {test.resultBands.map((b) => (
+              <div data-band-content data-band-id={b.id}>
+                <div class="result-section"><h2><span class="result-section-number">01</span> What your result means</h2><p>{b.whatItMeans}</p></div>
+                <div class="result-section"><h2><span class="result-section-number">02</span> What your result does not mean</h2><p>{b.whatItDoesNotMean}</p></div>
+                <div class="result-section"><h2><span class="result-section-number">03</span> Score explanation</h2><p>{test.howScoringWorks}</p></div>
+                <div class="result-section"><h2><span class="result-section-number">04</span> Strongest patterns identified</h2><ul>{b.strongestPatterns.map((s) => <li>{s}</li>)}</ul></div>
+                <div class="result-section"><h2><span class="result-section-number">05</span> Areas worth paying attention to</h2><ul>{b.areasToWatch.map((s) => <li>{s}</li>)}</ul></div>
+                <div class="result-section"><h2><span class="result-section-number">06</span> Evidence &amp; scientific basis</h2><p>{test.scientificBasis}</p></div>
+                <div class="result-section"><h2><span class="result-section-number">07</span> Limitations</h2><ul>{test.limitations.map((l) => <li>{l}</li>)}</ul></div>
+                <div class="result-section"><h2><span class="result-section-number">08</span> Suggested next steps</h2><ul>{b.suggestedNextSteps.map((s) => <li>{s}</li>)}</ul></div>
+                {b.professionalSupportNote && (
+                  <div class="result-section"><h2><span class="result-section-number">09</span> When professional support may be useful</h2><p>{b.professionalSupportNote}</p></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <section class="section">
+          <div class="shell prose">
+            <p style="color:var(--color-text-secondary);">
+              Each trait below is scored independently on a 4–20 scale from the same questionnaire. There is no single
+              overall "personality score" — the five results together form your snapshot.
+            </p>
+            {test.dimensions?.map((dim) => (
+              <div class="dim-result-card">
+                <h3>{dim.name}</h3>
+                <p style="color:var(--color-text-secondary); font-size:var(--text-sm);">{dim.shortDescription}</p>
+                <p style="font-size:var(--text-sm); margin-bottom:4px;">Score: <strong data-dim-score={dim.id}>–</strong> / 20</p>
+                <div class="dim-result-bar-track">
+                  <div class="dim-result-bar-fill" data-dim-bar={dim.id} data-min="4" data-max="20" style="width:0%"></div>
+                </div>
+                {test.dimensionBands?.[dim.id]?.map((b) => (
+                  <div data-dimension-result data-dimension={dim.id} data-band-id={b.id}>
+                    <p><strong>{b.label}.</strong> {b.whatItMeans}</p>
+                    <details>
+                      <summary>More about this result</summary>
+                      <p><strong>What this does not mean:</strong> {b.whatItDoesNotMean}</p>
+                      <ul>{b.strongestPatterns.map((s) => <li>{s}</li>)}</ul>
+                    </details>
+                  </div>
+                ))}
+              </div>
+            ))}
+
+            <div class="result-section">
+              <h2>Evidence &amp; scientific basis</h2>
+              <p>{test.scientificBasis}</p>
+              <h2>Limitations</h2>
+              <ul>{test.limitations.map((l) => <li>{l}</li>)}</ul>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {related.length > 0 && (
+        <section class="section-tight">
+          <div class="shell">
+            <h2 class="eyebrow" style="margin-top:0;">Related assessments</h2>
+            <div class="card-grid">
+              {related.map((t) => <TestCard test={t} lang={lang!} />)}
+            </div>
+          </div>
+        </section>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+<script src="../../../../../scripts/results-view.client.ts"></script>

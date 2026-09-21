@@ -1,0 +1,51 @@
+---
+import { siteName, defaultLocale } from '../i18n/config';
+import { categories } from '../lib/categories';
+
+export interface Props { lang: string; }
+const { lang } = Astro.props;
+const l = lang || defaultLocale;
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <h4>Categories</h4>
+        <ul>
+          {categories.map((c) => <li><a href={`/${l}/${c.slug}/`}>{c.name}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href={`/${l}/`}>All assessments</a></li>
+          <li><a href={`/${l}/guides/`}>Guides</a></li>
+          <li><a href={`/${l}/methodology/`}>Methodology</a></li>
+          <li><a href={`/${l}/evidence-policy/`}>Evidence policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href={`/${l}/about/`}>About {siteName}</a></li>
+          <li><a href={`/${l}/editorial-policy/`}>Editorial policy</a></li>
+          <li><a href={`/${l}/corrections-policy/`}>Corrections policy</a></li>
+          <li><a href={`/${l}/contact/`}>Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href={`/${l}/privacy-policy/`}>Privacy policy</a></li>
+          <li><a href={`/${l}/terms-of-use/`}>Terms of use</a></li>
+          <li><a href={`/${l}/medical-disclaimer/`}>Medical disclaimer</a></li>
+          <li><a href={`/${l}/cookie-policy/`}>Cookie policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>&copy; {year} {siteName}. Evidence-informed self-assessment tools. Not a substitute for professional medical or mental-health advice.</span>
+    </div>
+  </div>
+</footer>

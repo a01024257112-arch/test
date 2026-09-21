@@ -1,0 +1,32 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { breadcrumbList } from '../lib/structured-data';
+
+export interface Props {
+  lang: string;
+  title: string;
+  description: string;
+  path: string;
+  breadcrumbs: { name: string; href: string }[];
+  eyebrow?: string;
+  lastUpdated?: string;
+  noindex?: boolean;
+}
+const { lang, title, description, path, breadcrumbs, eyebrow, lastUpdated, noindex = false } = Astro.props;
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const jsonLd = [breadcrumbList(site, breadcrumbs.map((b) => ({ name: b.name, path: b.href })))];
+---
+<BaseLayout lang={lang} title={title} description={description} path={path} jsonLd={jsonLd} noindex={noindex}>
+  <div class="shell section-tight">
+    <Breadcrumbs items={breadcrumbs} />
+  </div>
+  <article class="section-tight">
+    <div class="shell prose">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {lastUpdated && <p style="color:var(--color-text-secondary); font-size:var(--text-sm);">Last updated: {lastUpdated}</p>}
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

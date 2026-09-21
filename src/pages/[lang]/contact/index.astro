@@ -1,0 +1,17 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { liveLocales, siteName } from '../../../i18n/config';
+export function getStaticPaths() { return liveLocales.map((l) => ({ params: { lang: l.code } })); }
+const { lang } = Astro.params;
+---
+<ArticleLayout
+  lang={lang!}
+  title="Contact"
+  description={`Get in touch with the ${siteName} team.`}
+  path="contact/"
+  breadcrumbs={[{ name: 'Home', href: `/${lang}/` }, { name: 'Contact', href: `/${lang}/contact/` }]}
+>
+  <p>For corrections, licensing questions, or general feedback, please write to <a href="mailto:hello@clarityassessments.example">hello@clarityassessments.example</a>.</p>
+  <p>For a factual correction, please see our <a href={`/${lang}/corrections-policy/`}>Corrections Policy</a> first — it explains what to include so we can verify and act on your report quickly.</p>
+  <p>We do not offer clinical advice, crisis support, or medical consultations by email. If you need immediate help, see our <a href={`/${lang}/medical-disclaimer/`}>Medical Disclaimer</a> for crisis resources.</p>
+</ArticleLayout>

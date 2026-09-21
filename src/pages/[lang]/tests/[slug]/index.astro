@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import EvidenceBadge from '../../../../components/EvidenceBadge.astro';
+import TestCard from '../../../../components/TestCard.astro';
+import { liveLocales } from '../../../../i18n/config';
+import { getCategory } from '../../../../lib/categories';
+import { testDefinitions, getTestBySlug } from '../../../../data/tests/index';
+import { getRegistryBySlug } from '../../../../data/registry';
+import { breadcrumbList, webPage } from '../../../../lib/structured-data';
+
+export function getStaticPaths() {
+  return liveLocales.flatMap((l) => testDefinitions.map((t) => ({ params: { lang: l.code, slug: t.slug } })));
+}
+
+const { lang, slug } = Astro.params;
+const test = getTestBySlug(slug!)!;
+const registry = getRegistryBySlug(slug!)!;
+const category = getCategory(test.category);
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const [minT, maxT] = test.estimatedMinutes;
+
+const related = test.relatedTestSlugs
+  .map((s) => testDefinitions.find((t) => t.slug === s))
+  .filter((t): t is NonNullable<typeof t> => !!t);
+
+const path = `tests/${test.slug}/`;
+const jsonLd = [
+  breadcrumbList(site, [
+    { name: 'Home', path: `/${lang}/` },
+    { name: category.name, path: `/${lang}/${category.slug}/` },
+    { name: test.title, path: `/${lang}/${path}` },
+  ]),
+  webPage(site, `/${lang}/${path}`, test.title, test.oneLiner, registry.lastReviewed ?? undefined),
+];
+---
+<BaseLayout
+  lang={lang!}
+  title={`${test.title} Test`}
+  description={test.oneLiner}
+  path={path}
+  jsonLd={jsonLd}
+>
+  <div class="shell section-tight">
+    <Breadcrumbs items={[
+      { name: 'Home', href: `/${lang}/` },
+      { name: category.name, href: `/${lang}/${category.slug}/` },
+      { name: test.title, href: `/${lang}/${path}` },
+    ]} />
+  </div>
+
+  <section class="section-tight">
+    <div class="shell prose" style="text-align:center;">
+      <h1>{test.title}</h1>
+      <p style="font-size:var(--text-lg); color:var(--color-text-secondary);">{test.oneLiner}</p>
+      <div style="display:flex; gap:8px; justify-content:center; margin-bottom:var(--space-5);">
+        <EvidenceBadge level={test.evidenceLevel} />
+      </div>
+      <div style="display:flex; gap:var(--space-6); justify-content:center; font-size:var(--text-sm); color:var(--color-text-secondary); margin-bottom:var(--space-6);">
+        <span><strong style="color:var(--color-text);">{minT}–{maxT} min</strong><br/>Estimated time</span>
+        <span><strong style="color:var(--color-text);">{test.questions.length}</strong><br/>Questions</span>
+      </div>
+      <a class="btn btn-primary" href={`/${lang}/${path}take/`}>Start test</a>
+      <p style="font-size:var(--text-xs); color:var(--color-text-secondary); margin-top:var(--space-4);">
+        Your answers stay in your browser. Nothing is sent to a server, and no account is required.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell prose">
+      <div class="result-section">
+        <h2><span class="result-section-number">01</span> What this test measures</h2>
+        <p>{test.whatItMeasures}</p>
+      </div>
+      <div class="result-section">
+        <h2><span class="result-section-number">02</span> Who it is for</h2>
+        <p>{test.whoItIsFor}</p>
+      </div>
+      <div class="result-section">
+        <h2><span class="result-section-number">03</span> How scoring works</h2>
+        <p>{test.howScoringWorks}</p>
+      </div>
+      <div class="result-section">
+        <h2><span class="result-section-number">04</span> Scientific basis</h2>
+        <p>{test.scientificBasis}</p>
+        {registry.officialReference && <p style="color:var(--color-text-secondary); font-size:var(--text-sm);"><strong>Primary source:</strong> {registry.officialReference}</p>}
+      </div>
+      <div class="result-section">
+        <h2><span class="result-section-number">05</span> Limitations</h2>
+        <ul>
+          {test.limitations.map((l) => <li>{l}</li>)}
+        </ul>
+      </div>
+
+      {registry.references.length > 0 && (
+        <div class="result-section">
+          <h2><span class="result-section-number">06</span> Sources</h2>
+          <ul class="references">
+            {registry.references.map((r) => (
+              <li>{r.author} ({r.year}). <em>{r.work}</em>{r.publisher ? `. ${r.publisher}` : ''}.
+                {' '}<a href={r.url} rel="noopener nofollow">{r.doi ? `doi:${r.doi}` : 'Source'}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div class="callout" style="margin-top:var(--space-7);">
+        <h4>Evidence &amp; review status</h4>
+        <p style="margin-bottom:4px;"><strong>Evidence level:</strong> {registry.evidenceLevel} — {registry.assessmentType.replace(/-/g, ' ')}</p>
+        <p style="margin-bottom:4px;"><strong>Last reviewed:</strong> {registry.lastReviewed ?? 'Not yet reviewed'}</p>
+        <p style="margin-bottom:0;"><strong>Editorial review:</strong> {registry.reviewStatus === 'reviewed' ? `Reviewed by ${registry.reviewerName}` : 'Editorial review pending — no named reviewer yet.'}</p>
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="section-tight">
+      <div class="shell">
+        <h2 class="eyebrow" style="margin-top:0;">Related assessments</h2>
+        <div class="card-grid">
+          {related.map((t) => <TestCard test={t} lang={lang!} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

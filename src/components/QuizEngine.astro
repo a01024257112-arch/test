@@ -1,0 +1,99 @@
+---
+import '../styles/quiz.css';
+import type { TestDefinition } from '../lib/types';
+
+export interface Props { test: TestDefinition; lang: string; }
+const { test, lang } = Astro.props;
+
+// Minimal payload the client script needs — no editorial prose, just what's
+// required to render questions and score answers entirely in the browser.
+const payload = {
+  slug: test.slug,
+  title: test.title,
+  scoringMethod: test.scoring.method,
+  minPossible: test.scoring.minPossible,
+  maxPossible: test.scoring.maxPossible,
+  dimensions: test.dimensions ?? null,
+  questions: test.questions.map((q) => ({
+    id: q.id,
+    dimension: q.dimension ?? null,
+    reverseScored: !!q.reverseScored,
+    scale: q.answerScale ?? test.answerScale,
+  })),
+  resultBands: test.resultBands.map((b) => ({ id: b.id, minScore: b.minScore, maxScore: b.maxScore })),
+  dimensionBands: test.dimensionBands
+    ? Object.fromEntries(Object.entries(test.dimensionBands).map(([k, v]) => [k, v.map((b) => ({ id: b.id, minScore: b.minScore, maxScore: b.maxScore }))]))
+    : null,
+};
+---
+<div class="quiz-resume-banner" data-resume-banner>
+  <span>You have progress saved on this test.</span>
+  <div style="display:flex; gap:8px;">
+    <button type="button" class="btn btn-secondary" data-resume-restart>Start over</button>
+    <button type="button" class="btn btn-primary" data-resume-continue>Continue</button>
+  </div>
+</div>
+
+<div class="quiz-header">
+  <div class="shell">
+    <button type="button" class="quiz-back" data-quiz-back aria-label="Previous question" disabled>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="quiz-progress-wrap">
+      <div class="quiz-progress-label">
+        <span data-quiz-progress-text aria-live="polite">Question 1 / {test.questions.length}</span>
+      </div>
+      <div class="quiz-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax={test.questions.length} aria-valuenow="1" data-quiz-progressbar>
+        <div class="quiz-progress-fill" style={`width:${100 / test.questions.length}%`} data-quiz-progress-fill></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="quiz-main">
+  <form data-quiz-form novalidate>
+    {test.questions.map((q, i) => {
+      const scale = q.answerScale ?? test.answerScale;
+      return (
+        <fieldset data-quiz-question={q.id} data-quiz-index={i} class="quiz-question" hidden={i !== 0}>
+          <div class="quiz-question-count">Question {i + 1} of {test.questions.length}</div>
+          <legend class="quiz-prompt">{q.prompt}</legend>
+          <ul class="quiz-options">
+            {scale.map((opt) => (
+              <li class="quiz-option">
+                <input
+                  class="quiz-option-input"
+                  type="radio"
+                  id={`${q.id}-${opt.value}`}
+                  name={q.id}
+                  value={opt.value}
+                />
+                <label class="quiz-option-label" for={`${q.id}-${opt.value}`}>
+                  {opt.label}
+                  <span class="quiz-option-check" aria-hidden="true"></span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        </fieldset>
+      );
+    })}
+
+    <div class="quiz-footer-nav">
+      <button type="submit" class="btn btn-primary" data-quiz-next disabled>Next</button>
+    </div>
+  </form>
+
+  <div class="quiz-complete" data-quiz-complete hidden>
+    <p class="eyebrow">Test complete</p>
+    <h2>Calculating your result…</h2>
+    <p>You'll be taken to your results in a moment.</p>
+  </div>
+</div>
+
+<script type="application/json" id="quiz-data" set:html={JSON.stringify(payload)} />
+<script define:vars={{ lang, resultsUrl: `/${lang}/tests/${test.slug}/results/` }}>
+  window.__QUIZ_LANG__ = lang;
+  window.__QUIZ_RESULTS_URL__ = resultsUrl;
+</script>
+<script src="../scripts/quiz-engine.client.ts"></script>

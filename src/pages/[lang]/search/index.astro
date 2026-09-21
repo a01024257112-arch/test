@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { liveLocales } from '../../../i18n/config';
+import { testDefinitions } from '../../../data/tests/index';
+import { guides } from '../../../data/guides';
+import { categories } from '../../../lib/categories';
+
+export function getStaticPaths() { return liveLocales.map((l) => ({ params: { lang: l.code } })); }
+const { lang } = Astro.params;
+
+const searchIndex = [
+  ...testDefinitions.map((t) => ({
+    title: t.title, description: t.oneLiner, url: `/${lang}/tests/${t.slug}/`, type: 'test',
+    keywords: [t.category, t.evidenceLevel, ...t.title.toLowerCase().split(' ')],
+  })),
+  ...guides.map((g) => ({
+    title: g.title, description: g.description, url: `/${lang}/guides/${g.slug}/`, type: 'guide',
+    keywords: ['guide', ...g.title.toLowerCase().split(' ')],
+  })),
+  ...categories.map((c) => ({
+    title: c.name, description: c.shortDescription, url: `/${lang}/${c.slug}/`, type: 'category',
+    keywords: ['category', ...c.name.toLowerCase().split(' ')],
+  })),
+];
+---
+<BaseLayout lang={lang!} title="Search" description="Search all assessments, guides, and categories." path="search/" noindex={true}>
+  <div class="shell section-tight">
+    <Breadcrumbs items={[{ name: 'Home', href: `/${lang}/` }, { name: 'Search', href: `/${lang}/search/` }]} />
+  </div>
+  <section class="section-tight">
+    <div class="shell">
+      <h1>Search</h1>
+      <div class="search-box" style="max-width:560px; margin-bottom:var(--space-6);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <label class="sr-only" for="search-input">Search tests, guides, and categories</label>
+        <input id="search-input" data-search-input type="search" placeholder="Try “focus”, “anxiety”, or “personality”" />
+      </div>
+      <p data-search-empty hidden style="color:var(--color-text-secondary);">No results found. Try a different word, or browse our <a href={`/${lang}/`}>categories</a>.</p>
+      <div class="card-grid" data-search-results></div>
+    </div>
+  </section>
+</BaseLayout>
+<script type="application/json" id="search-index" set:html={JSON.stringify(searchIndex)} />
+<script src="../../../scripts/search.client.ts"></script>

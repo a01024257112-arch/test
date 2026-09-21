@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { liveLocales } from '../../../i18n/config';
+import { guides } from '../../../data/guides';
+import { breadcrumbList } from '../../../lib/structured-data';
+
+export function getStaticPaths() {
+  return liveLocales.map((l) => ({ params: { lang: l.code } }));
+}
+const { lang } = Astro.params;
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const jsonLd = [breadcrumbList(site, [{ name: 'Home', path: `/${lang}/` }, { name: 'Guides', path: `/${lang}/guides/` }])];
+---
+<BaseLayout lang={lang!} title="Guides" description="In-depth guides on how self-assessments work, how they're scored, and how to read your results." path="guides/" jsonLd={jsonLd}>
+  <div class="shell section-tight">
+    <Breadcrumbs items={[{ name: 'Home', href: `/${lang}/` }, { name: 'Guides', href: `/${lang}/guides/` }]} />
+  </div>
+  <section class="section-tight">
+    <div class="shell prose">
+      <h1>Guides</h1>
+      <p style="color:var(--color-text-secondary);">Longer explainers on how our assessments work, how they're scored, and how to interpret results responsibly.</p>
+    </div>
+  </section>
+  <section class="section-tight">
+    <div class="shell">
+      <div class="card-grid">
+        {guides.map((g) => (
+          <a class="card" href={`/${lang}/guides/${g.slug}/`}>
+            <h3>{g.title}</h3>
+            <p style="color:var(--color-text-secondary); margin-bottom:0;">{g.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

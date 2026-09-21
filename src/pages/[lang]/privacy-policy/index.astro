@@ -1,0 +1,57 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { liveLocales, siteName } from '../../../i18n/config';
+export function getStaticPaths() { return liveLocales.map((l) => ({ params: { lang: l.code } })); }
+const { lang } = Astro.params;
+---
+<ArticleLayout
+  lang={lang!}
+  title="Privacy Policy"
+  description={`How ${siteName} handles your data: what we collect, what we never collect, and why test scoring never leaves your browser.`}
+  path="privacy-policy/"
+  lastUpdated="2026-09-21"
+  breadcrumbs={[{ name: 'Home', href: `/${lang}/` }, { name: 'Privacy Policy', href: `/${lang}/privacy-policy/` }]}
+>
+  <p>{siteName} is built around a simple rule: your test answers are yours. This page explains exactly what that means technically, not just as a promise.</p>
+
+  <h2>What happens when you take a test</h2>
+  <ul>
+    <li>Questions and scoring logic are downloaded to your browser as static content.</li>
+    <li>Your answers are scored by JavaScript running on your own device.</li>
+    <li>Your in-progress answers and finished results are saved only in your browser's <code>localStorage</code> — never transmitted to our servers.</li>
+    <li>No account or sign-in is required or offered for taking a test.</li>
+  </ul>
+
+  <h2>What we do not collect</h2>
+  <ul>
+    <li>We do not collect your name, email address, or any other identity information to let you take a test.</li>
+    <li>We do not receive your individual question-by-question answers.</li>
+    <li>We do not receive your calculated score or result category.</li>
+    <li>We do not place answers or results in URLs, query strings, or server logs.</li>
+    <li>We do not use your results to build an advertising profile.</li>
+  </ul>
+
+  <h2>What limited analytics we do use</h2>
+  <p>To understand which tests are useful and where the site has problems, we may record anonymous, aggregate events:</p>
+  <ul>
+    <li><code>test_view</code> — a test landing page was viewed.</li>
+    <li><code>test_start</code> — a user began a test.</li>
+    <li><code>test_complete</code> — a user reached a results page.</li>
+  </ul>
+  <p>These events never include your individual answers, your score, or any category of clinical or health information. They are used in aggregate only.</p>
+
+  <h2>Cookies and local storage</h2>
+  <p>We use <code>localStorage</code> (not cookies) to save your in-progress answers and results on your own device, and a language preference if you choose one. See our <a href={`/${lang}/cookie-policy/`}>Cookie Policy</a> for details. You can clear this at any time through your browser settings, which will also clear any saved test progress or results.</p>
+
+  <h2>Your rights (GDPR and similar frameworks)</h2>
+  <p>Because we do not collect or store personal answers or results on our servers, there is generally nothing personal for us to export, correct, or delete on your behalf — your data already lives only on your device, under your control. If we ever introduce optional accounts or server-side features, this policy will be updated first, and any such features will be opt-in.</p>
+
+  <h2>Third parties</h2>
+  <p>We do not sell personal data. Any third-party analytics or hosting providers we use are bound to processing only the limited, non-sensitive aggregate events described above.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If this policy changes in a way that affects how your data is handled, we will update the "last updated" date above and, for material changes, note the change on this page.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy can be sent through our <a href={`/${lang}/contact/`}>contact page</a>.</p>
+</ArticleLayout>

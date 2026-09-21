@@ -1,0 +1,23 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { liveLocales, siteName } from '../../../i18n/config';
+export function getStaticPaths() { return liveLocales.map((l) => ({ params: { lang: l.code } })); }
+const { lang } = Astro.params;
+---
+<ArticleLayout
+  lang={lang!}
+  title="Corrections Policy"
+  description={`How to report an error on ${siteName} and how we handle corrections.`}
+  path="corrections-policy/"
+  lastUpdated="2026-09-21"
+  breadcrumbs={[{ name: 'Home', href: `/${lang}/` }, { name: 'Corrections Policy', href: `/${lang}/corrections-policy/` }]}
+>
+  <h2>Reporting an error</h2>
+  <p>If you find an inaccurate claim, a broken source link, an outdated citation, or a scoring error on any page, please tell us through our <a href={`/${lang}/contact/`}>contact page</a>. Please include the page URL and, where possible, a source supporting the correction.</p>
+
+  <h2>How we evaluate reports</h2>
+  <p>We check the report against the primary source cited on the page (or the correct primary source, if one was missing or wrong). Scoring or cutoff corrections are checked directly against the original instrument's publication before any change is made.</p>
+
+  <h2>How we publish corrections</h2>
+  <p>Substantive corrections update the "last reviewed" or "last updated" date on the affected page. For validated screening tools, a scoring or cutoff correction is treated as high priority and verified against the original source before publishing.</p>
+</ArticleLayout>

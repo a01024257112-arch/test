@@ -1,0 +1,33 @@
+---
+import { liveLocales, defaultLocale, siteName } from '../i18n/config';
+const liveCodes = liveLocales.map((l) => l.code);
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{siteName}</title>
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href={`/${defaultLocale}/`} />
+  <script define:vars={{ liveCodes, defaultLocale }}>
+    // Browser-language suggestion only — never a permanent IP-based redirect,
+    // and this page still renders a visible link if JS is unavailable.
+    var preferred = (navigator.languages || [navigator.language || defaultLocale])
+      .map(function (l) { return l.toLowerCase(); });
+    var match = defaultLocale;
+    for (var i = 0; i < preferred.length; i++) {
+      var short = preferred[i].split('-')[0];
+      if (liveCodes.indexOf(preferred[i]) !== -1) { match = preferred[i]; break; }
+      if (liveCodes.indexOf(short) !== -1) { match = short; break; }
+    }
+    window.location.replace('/' + match + '/');
+  </script>
+</head>
+<body>
+  <noscript>
+    <p>Please choose a language: {liveCodes.map((c) => `${c}`).join(', ')}.</p>
+  </noscript>
+  <p>Redirecting to <a href={`/${defaultLocale}/`}>{siteName}</a>…</p>
+</body>
+</html>

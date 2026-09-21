@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import QuizEngine from '../../../../../components/QuizEngine.astro';
+import { liveLocales } from '../../../../../i18n/config';
+import { testDefinitions, getTestBySlug } from '../../../../../data/tests/index';
+
+export function getStaticPaths() {
+  return liveLocales.flatMap((l) => testDefinitions.map((t) => ({ params: { lang: l.code, slug: t.slug } })));
+}
+
+const { lang, slug } = Astro.params;
+const test = getTestBySlug(slug!)!;
+const path = `tests/${test.slug}/take/`;
+---
+<BaseLayout
+  lang={lang!}
+  title={`${test.title} — Take the test`}
+  description={`Take the ${test.title} test. ${test.questions.length} questions, about ${test.estimatedMinutes[0]}–${test.estimatedMinutes[1]} minutes.`}
+  path={path}
+  noindex={true}
+  bodyClass="quiz-body"
+>
+  <QuizEngine test={test} lang={lang!} />
+</BaseLayout>

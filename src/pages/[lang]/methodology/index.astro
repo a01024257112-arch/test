@@ -1,0 +1,29 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { liveLocales, siteName } from '../../../i18n/config';
+export function getStaticPaths() { return liveLocales.map((l) => ({ params: { lang: l.code } })); }
+const { lang } = Astro.params;
+---
+<ArticleLayout
+  lang={lang!}
+  title="Methodology"
+  description={`How ${siteName} selects, builds, scores, translates, and updates its assessments.`}
+  path="methodology/"
+  lastUpdated="2026-09-21"
+  breadcrumbs={[{ name: 'Home', href: `/${lang}/` }, { name: 'Methodology', href: `/${lang}/methodology/` }]}
+>
+  <h2>How assessments are selected</h2>
+  <p>Every test on our roadmap starts as a registry entry (see our internal <a href={`/${lang}/evidence-policy/`}>evidence policy</a>) describing its intended category, evidence level, and — for validated or public-domain instruments — its source. A test only moves from "planned" or "requires review" to "published" once licensing, scoring, and content review are complete.</p>
+
+  <h2>How sources are checked</h2>
+  <p>For validated screening tools, we trace claims back to the original peer-reviewed publication rather than secondary summaries, and we record the DOI or official source URL on the test's registry entry and landing page. For public-domain scales, we confirm the licensing terms of the originating body (for example, the International Personality Item Pool) directly.</p>
+
+  <h2>How tests are scored</h2>
+  <p>All scoring is deterministic and documented per test: item weights, reverse-scoring rules, summation method, and score bands are all specified in the test's data definition and described in plain language on its landing and results pages. Scoring runs entirely in your browser — see our <a href={`/${lang}/privacy-policy/`}>Privacy Policy</a>.</p>
+
+  <h2>How translations are handled</h2>
+  <p>For validated instruments, we use an officially validated translation where one exists and record its source. Where no validated translation exists, we do not claim that a machine or ad hoc translation preserves the instrument's psychometric properties — we either hold the localized version back or clearly label it as an unvalidated translation. Editorial content (guides, category pages) may be translated with ordinary high-quality localization, since it carries no psychometric claim.</p>
+
+  <h2>How content is updated</h2>
+  <p>Each test page shows a "last reviewed" date. When new evidence, a corrected source, or a licensing change comes to light, we update the relevant registry entry and page, and log the change per our <a href={`/${lang}/corrections-policy/`}>Corrections Policy</a>.</p>
+</ArticleLayout>

@@ -1,0 +1,29 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { liveLocales, siteName } from '../../../i18n/config';
+export function getStaticPaths() { return liveLocales.map((l) => ({ params: { lang: l.code } })); }
+const { lang } = Astro.params;
+---
+<ArticleLayout
+  lang={lang!}
+  title={`About ${siteName}`}
+  description={`${siteName} builds evidence-informed self-assessment tools that help people understand themselves better.`}
+  path="about/"
+  breadcrumbs={[{ name: 'Home', href: `/${lang}/` }, { name: 'About', href: `/${lang}/about/` }]}
+>
+  <p style="font-size:var(--text-lg); color:var(--color-text-secondary);">{siteName} exists to make evidence-informed self-assessment tools that help people understand themselves better — without pretending to be more scientific than they are, and without treating your answers as a product.</p>
+
+  <h2>What we build</h2>
+  <p>We publish two kinds of tests. Some are built directly from published, peer-reviewed clinical screening instruments whose licensing and reproduction rights we've verified — we label these "Validated screening tool." Others are original, evidence-informed self-reflection quizzes we write ourselves, grounded in published research but not themselves validated instruments — we label these "Evidence-informed self-assessment." We never blur the two.</p>
+
+  <h2>What we won't do</h2>
+  <ul>
+    <li>We will not publish a questionnaire we can't confirm we have the right to reproduce.</li>
+    <li>We will not present an evidence-informed or entertainment quiz as clinically validated.</li>
+    <li>We will not invent clinical thresholds, citations, or reviewer credentials.</li>
+    <li>We will not sell or analyze your individual test answers.</li>
+  </ul>
+
+  <h2>How to reach us</h2>
+  <p>See our <a href={`/${lang}/contact/`}>contact page</a>, or read our <a href={`/${lang}/editorial-policy/`}>Editorial Policy</a>, <a href={`/${lang}/evidence-policy/`}>Evidence Policy</a>, and <a href={`/${lang}/methodology/`}>Methodology</a> for more detail on how we work.</p>
+</ArticleLayout>

@@ -1,0 +1,17 @@
+---
+import EvidenceBadge from './EvidenceBadge.astro';
+import type { TestDefinition } from '../lib/types';
+
+export interface Props { test: TestDefinition; lang: string; }
+const { test, lang } = Astro.props;
+const [minT, maxT] = test.estimatedMinutes;
+---
+<a class="card" href={`/${lang}/tests/${test.slug}/`}>
+  <h3>{test.title}</h3>
+  <p style="color:var(--color-text-secondary); margin-bottom:0;">{test.oneLiner}</p>
+  <div class="card-meta">
+    <EvidenceBadge level={test.evidenceLevel} />
+    <span>{test.questions.length} questions</span>
+    <span>{minT}–{maxT} min</span>
+  </div>
+</a>
