@@ -173,8 +173,21 @@ export const registry: RegistryEntry[] = [
   base({
     id: 'mw-10', name: 'Burnout Warning Signs', slug: 'burnout-warning-signs',
     category: 'mental-wellbeing', evidenceLevel: 'C', assessmentType: 'evidence-informed',
-    status: 'planned',
-    statusReason: 'Not restricted by licensing (custom, evidence-informed content referencing published burnout research) — simply not authored yet in this build cycle.',
+    scoringMethod: 'Sum of 12 original Likert items (1-5 frequency scale). Range 12-60.',
+    cutoffMethod: 'Descriptive bands (fewer / some / multiple warning signs) — informational only, not a clinical or occupational cutoff.',
+    targetPopulation: 'Working adults reflecting on their current relationship with work.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Cannot distinguish burnout from overlapping conditions such as depression.',
+      'Reflects a recent self-reported pattern, not a workplace or clinical diagnosis.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Maslach, C., Schaufeli, W. B., & Leiter, M. P.', work: 'Job Burnout', year: 2001, publisher: 'Annual Review of Psychology', doi: '10.1146/annurev.psych.52.1.397', url: 'https://doi.org/10.1146/annurev.psych.52.1.397' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Grounded in general burnout research (the three-dimension exhaustion/cynicism/effectiveness framework) without reproducing any specific copyrighted instrument.',
   }),
 
   // ============================== PERSONALITY ==============================
@@ -260,12 +273,32 @@ export const registry: RegistryEntry[] = [
     status: 'published',
     statusReason: 'Original items written for this platform; no third-party licensing dependency. Grounded in published procrastination research, clearly labeled as evidence-informed rather than validated. Built as one of the three Phase 2 template assessments.',
   }),
+  base({
+    id: 'wp-24', name: 'Deep Work Readiness', slug: 'deep-work-readiness',
+    category: 'productivity', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 12 original Likert items (1-5 frequency scale). Range 12-60. Higher = more frequent use of focus-supporting habits.',
+    cutoffMethod: 'Descriptive bands (developing / some / strong habits) — informational only, not a clinical or performance cutoff.',
+    targetPopulation: 'Working adults and students whose work involves cognitively demanding tasks.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Reflects self-reported habits, not measured output, performance, or work quality.',
+      'What counts as achievable "deep work" varies significantly by role.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Newport, C.', work: 'Deep Work: Rules for Focused Success in a Distracted World', year: 2016, publisher: 'Grand Central Publishing', url: 'https://www.calnewport.com/books/deep-work/' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general research on focused attention and task-switching costs, without reproducing any specific copyrighted instrument.',
+  }),
   ...([
-    'Deep Work Readiness', 'Focus Environment Test', 'Meeting Overload Check', 'Remote Work Fit',
-    'Work Boundary Check', 'Decision-Making Style', 'Feedback Preference', 'Leadership Tendencies', 'Team Collaboration Style',
-  ] as const).map((name, i) =>
+    ['wp-25', 'Focus Environment Test'], ['wp-26', 'Meeting Overload Check'], ['wp-27', 'Remote Work Fit'],
+    ['wp-28', 'Work Boundary Check'], ['wp-29', 'Decision-Making Style'], ['wp-30', 'Feedback Preference'],
+    ['wp-31', 'Leadership Tendencies'], ['wp-32', 'Team Collaboration Style'],
+  ] as const).map(([id, name]) =>
     base({
-      id: `wp-${24 + i}`, name, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      id, name, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       category: 'productivity' as AssessmentCategory, evidenceLevel: 'C' as EvidenceLevel, assessmentType: 'evidence-informed',
       status: 'planned',
       statusReason: 'Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle.',
@@ -273,13 +306,32 @@ export const registry: RegistryEntry[] = [
   ),
 
   // ============================ RELATIONSHIPS ============================
+  base({
+    id: 're-33', name: 'Relationship Communication Style', slug: 'relationship-communication-style',
+    category: 'relationships', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 10 original Likert items (1-5 frequency scale). Range 10-50. Describes a style continuum, not a good/bad score.',
+    cutoffMethod: 'Descriptive style bands (more reserved / blended / more direct) — a style description, not a clinical cutoff. No band is presented as superior.',
+    targetPopulation: 'Adults reflecting on their communication habits in close relationships.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale or typology.',
+      'Communication style often varies by specific relationship, which a single score cannot fully capture.',
+      'Reflects self-reported tendency, not observed behavior or the other person’s experience.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Gottman, J. M., & Silver, N.', work: 'The Seven Principles for Making Marriage Work', year: 1999, publisher: 'Harmony', url: 'https://www.gottman.com/' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general relationship-communication research, without reproducing any specific copyrighted instrument or validated typology.',
+  }),
   ...([
-    'Relationship Communication Style', 'Conflict Response Style', 'Boundary Setting', 'Trust Tendencies',
-    'Jealousy Triggers', 'Emotional Availability', 'Friendship Style', 'Social Energy', 'Dating Expectations',
-    'Relationship Maintenance Habits',
-  ] as const).map((name, i) =>
+    ['re-34', 'Conflict Response Style'], ['re-35', 'Boundary Setting'], ['re-36', 'Trust Tendencies'],
+    ['re-37', 'Jealousy Triggers'], ['re-38', 'Emotional Availability'], ['re-39', 'Friendship Style'],
+    ['re-40', 'Social Energy'], ['re-41', 'Dating Expectations'], ['re-42', 'Relationship Maintenance Habits'],
+  ] as const).map(([id, name]) =>
     base({
-      id: `re-${33 + i}`, name, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      id, name, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       category: 'relationships' as AssessmentCategory, evidenceLevel: 'C' as EvidenceLevel, assessmentType: 'evidence-informed',
       status: 'planned',
       statusReason: 'Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle.',
@@ -294,12 +346,50 @@ export const registry: RegistryEntry[] = [
     status: 'requires-review',
     statusReason: 'Validated chronotype instruments exist (e.g., rMEQ, MEQ), but licensing/permission was not verified this review cycle. Held back pending confirmation; a custom evidence-informed chronotype quiz may be built instead if rights cannot be confirmed.',
   }),
+  base({
+    id: 'li-44', name: 'Sleep Hygiene Check', slug: 'sleep-hygiene-check',
+    category: 'lifestyle', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 10 original Likert items (1-5 frequency scale). Range 10-50. Higher = more consistent healthy sleep habits (positively framed, unlike most other tests on this platform).',
+    cutoffMethod: 'Descriptive bands (room to build / mixed / strong habits) — informational only, not a clinical sleep-disorder cutoff.',
+    targetPopulation: 'Adults reflecting on their sleep-related habits.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Measures habits, not sleep quality, sleep duration, or symptoms of a sleep disorder.',
+      'Persistent sleep difficulty despite good habits is worth discussing with a healthcare professional.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Irish, L. A., Kline, C. E., Gunn, H. E., Buysse, D. J., & Hall, M. H.', work: 'The role of sleep hygiene in promoting public health: A review of empirical evidence', year: 2015, publisher: 'Sleep Medicine Reviews', doi: '10.1016/j.smrv.2014.10.001', url: 'https://doi.org/10.1016/j.smrv.2014.10.001' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general, widely published sleep-hygiene guidance, without reproducing any specific copyrighted instrument.',
+  }),
+  base({
+    id: 'li-46', name: 'Digital Wellbeing Check', slug: 'digital-wellbeing-check',
+    category: 'lifestyle', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 12 original Likert items (1-5 frequency scale). Range 12-60.',
+    cutoffMethod: 'Descriptive bands (few / some / multiple signs of digital overuse) — informational only, not a clinical addiction cutoff.',
+    targetPopulation: 'Adults reflecting on their smartphone and social-media habits.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Reflects self-reported frequency, not measured screen time or objective behavior.',
+      'Does not diagnose problematic technology use as a clinical condition.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Elhai, J. D., Dvorak, R. D., Levine, J. C., & Hall, B. J.', work: 'Problematic smartphone use: A conceptual overview and systematic review of relations with anxiety and depression psychopathology', year: 2017, publisher: 'Journal of Affective Disorders', doi: '10.1016/j.jad.2016.08.030', url: 'https://doi.org/10.1016/j.jad.2016.08.030' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general research on habitual technology use, without reproducing any specific copyrighted instrument or making a clinical addiction claim.',
+  }),
   ...([
-    'Sleep Hygiene Check', 'Sleep Debt Check', 'Digital Wellbeing Check', 'Smartphone Habit Check',
-    'Social Media Habit Check', 'Notification Stress', 'Caffeine Timing Habits', 'Exercise Consistency', 'Recovery Routine',
-  ] as const).map((name, i) =>
+    ['li-45', 'Sleep Debt Check'], ['li-47', 'Smartphone Habit Check'], ['li-48', 'Social Media Habit Check'],
+    ['li-49', 'Notification Stress'], ['li-50', 'Caffeine Timing Habits'], ['li-51', 'Exercise Consistency'], ['li-52', 'Recovery Routine'],
+  ] as const).map(([id, name]) =>
     base({
-      id: `li-${44 + i}`, name, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      id, name, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       category: 'lifestyle' as AssessmentCategory, evidenceLevel: 'C' as EvidenceLevel, assessmentType: 'evidence-informed',
       status: 'planned',
       statusReason: 'Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle.',
@@ -307,12 +397,31 @@ export const registry: RegistryEntry[] = [
   ),
 
   // ============================ CAREER & VALUES ============================
+  base({
+    id: 'ca-54', name: 'Job Satisfaction Check', slug: 'job-satisfaction-check',
+    category: 'career', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 10 original Likert items (1-5 agreement scale). Range 10-50. Higher = higher self-reported satisfaction.',
+    cutoffMethod: 'Descriptive bands (lower / mixed / higher satisfaction) — informational only, not a validated organizational-climate cutoff.',
+    targetPopulation: 'Working adults reflecting on their current job.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Reflects a snapshot in time; satisfaction can shift with workload, team changes, or life circumstances.',
+      'A single total score can mask very different underlying factor-level pictures.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Judge, T. A., Weiss, H. M., Kammeyer-Mueller, J. D., & Hulin, C. L.', work: 'Job attitudes, job satisfaction, and job affect: A century of continuity and of change', year: 2017, publisher: 'Journal of Applied Psychology', doi: '10.1037/apl0000181', url: 'https://doi.org/10.1037/apl0000181' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general organizational-psychology research on job-satisfaction drivers, without reproducing any specific copyrighted instrument.',
+  }),
   ...([
-    'Career Values', 'Job Satisfaction Check', 'Job Change Readiness', 'Entrepreneurial Work Style',
-    'Learning Preferences', 'Work Motivation', 'Career Decision Confidence', 'Workplace Strengths',
-  ] as const).map((name, i) =>
+    ['ca-53', 'Career Values'], ['ca-55', 'Job Change Readiness'], ['ca-56', 'Entrepreneurial Work Style'],
+    ['ca-57', 'Learning Preferences'], ['ca-58', 'Work Motivation'], ['ca-59', 'Career Decision Confidence'], ['ca-60', 'Workplace Strengths'],
+  ] as const).map(([id, name]) =>
     base({
-      id: `ca-${53 + i}`, name, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      id, name, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       category: 'career' as AssessmentCategory, evidenceLevel: 'C' as EvidenceLevel, assessmentType: 'evidence-informed',
       status: 'planned',
       statusReason: 'Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle.',

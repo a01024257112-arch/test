@@ -2,7 +2,7 @@
 
 Auto-generated from `src/data/registry.ts` — do not hand-edit the table below; regenerate it instead.
 
-Status summary: 3 published, 3 draft (license verified, build pending), 7 requires-review, 47 planned. Total: 60.
+Status summary: 9 published, 3 draft (license verified, build pending), 7 requires-review, 41 planned. Total: 60.
 
 ## Mental Wellbeing (10)
 
@@ -17,7 +17,7 @@ Status summary: 3 published, 3 draft (license verified, build pending), 7 requir
 | mw-07 | Panic Symptom Check | A | requires-review | No licensing/translation verification completed this review cycle. |
 | mw-08 | Social Anxiety Self-Check | A | requires-review | No licensing/translation verification completed this review cycle. |
 | mw-09 | OCD Symptom Self-Check | A | requires-review | No licensing/translation verification completed this review cycle. |
-| mw-10 | Burnout Warning Signs | C | planned | Not restricted by licensing (custom, evidence-informed content referencing published burnout research) — simply not authored yet in this bui… |
+| mw-10 | Burnout Warning Signs | C | published | Original items written for this platform; no third-party licensing dependency. Grounded in general burnout research (the three-dimension exh… |
 
 ## Personality (12)
 
@@ -41,7 +41,7 @@ Status summary: 3 published, 3 draft (license verified, build pending), 7 requir
 | # | Test | Evidence Level | Status | Notes |
 |---|---|---|---|---|
 | wp-23 | Procrastination Tendencies | C | published | Original items written for this platform; no third-party licensing dependency. Grounded in published procrastination research, clearly label… |
-| wp-24 | Deep Work Readiness | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
+| wp-24 | Deep Work Readiness | C | published | Original items written for this platform; no third-party licensing dependency. Informed by general research on focused attention and task-sw… |
 | wp-25 | Focus Environment Test | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
 | wp-26 | Meeting Overload Check | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
 | wp-27 | Remote Work Fit | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
@@ -55,7 +55,7 @@ Status summary: 3 published, 3 draft (license verified, build pending), 7 requir
 
 | # | Test | Evidence Level | Status | Notes |
 |---|---|---|---|---|
-| re-33 | Relationship Communication Style | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
+| re-33 | Relationship Communication Style | C | published | Original items written for this platform; no third-party licensing dependency. Informed by general relationship-communication research, with… |
 | re-34 | Conflict Response Style | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
 | re-35 | Boundary Setting | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
 | re-36 | Trust Tendencies | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
@@ -71,9 +71,9 @@ Status summary: 3 published, 3 draft (license verified, build pending), 7 requir
 | # | Test | Evidence Level | Status | Notes |
 |---|---|---|---|---|
 | li-43 | Chronotype / Morning-Evening Preference | A | requires-review | Validated chronotype instruments exist (e.g., rMEQ, MEQ), but licensing/permission was not verified this review cycle. Held back pending con… |
-| li-44 | Sleep Hygiene Check | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
+| li-44 | Sleep Hygiene Check | C | published | Original items written for this platform; no third-party licensing dependency. Informed by general, widely published sleep-hygiene guidance,… |
+| li-46 | Digital Wellbeing Check | C | published | Original items written for this platform; no third-party licensing dependency. Informed by general research on habitual technology use, with… |
 | li-45 | Sleep Debt Check | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
-| li-46 | Digital Wellbeing Check | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
 | li-47 | Smartphone Habit Check | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
 | li-48 | Social Media Habit Check | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
 | li-49 | Notification Stress | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
@@ -85,8 +85,8 @@ Status summary: 3 published, 3 draft (license verified, build pending), 7 requir
 
 | # | Test | Evidence Level | Status | Notes |
 |---|---|---|---|---|
+| ca-54 | Job Satisfaction Check | C | published | Original items written for this platform; no third-party licensing dependency. Informed by general organizational-psychology research on job… |
 | ca-53 | Career Values | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
-| ca-54 | Job Satisfaction Check | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
 | ca-55 | Job Change Readiness | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
 | ca-56 | Entrepreneurial Work Style | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |
 | ca-57 | Learning Preferences | C | planned | Custom evidence-informed quiz. No licensing blocker; roadmap slot for a future build cycle. |

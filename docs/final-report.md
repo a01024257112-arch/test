@@ -3,19 +3,31 @@
 Built from an empty repository as a static Astro + TypeScript site,
 following the phased approach the brief specified: Phase 1 architecture →
 Phase 2 three working templates → Phase 3 roadmap scaffolding for the
-remaining catalog → Phase 4 QA pass. 33 pages currently build; the project
+remaining catalog → Phase 4 QA pass. 51 pages currently build; the project
 compiles clean (`astro check`: 0 errors/warnings) and the quiz flow was
 smoke-tested end-to-end in a real headless-Chromium session.
 
+> **Update — second scaling pass:** after the initial Phase 2 delivery (3
+> tests, one per evidence level), the catalog was expanded to **9 published
+> tests** by authoring 6 additional Level C (evidence-informed, no
+> licensing dependency) assessments — one per remaining empty category, so
+> all 6 categories now have live content. See "TESTS PUBLISHED" below for
+> the full current list; the original 3-test Phase 2 narrative is preserved
+> in the paragraphs that reference it.
+
 ## FILES CREATED
 
-63 files, all new (empty repo, no prior commits). Full list in the repo;
-grouped summary:
+63 files in the original Phase 1-2 delivery (empty repo, no prior commits),
+plus 6 more test-definition files and doc/registry updates in the second
+scaling pass. Full list in the repo; grouped summary (counts below include
+the scaling pass):
 
 - **Config**: `astro.config.mjs`, `tsconfig.json`, `package.json`, `.gitignore`
-- **Data model & content** (11): `src/lib/types.ts`, `src/data/registry.ts`
+- **Data model & content** (17): `src/lib/types.ts`, `src/data/registry.ts`
   (all 60 roadmap entries), `src/data/tests/{index,anxiety-symptom-screening,
-  big-five-personality-short,procrastination-tendencies}.ts`,
+  big-five-personality-short,procrastination-tendencies,burnout-warning-signs,
+  deep-work-readiness,relationship-communication-style,digital-wellbeing-check,
+  sleep-hygiene-check,job-satisfaction-check}.ts`,
   `src/data/guides.ts`, `src/lib/categories.ts`, `src/lib/structured-data.ts`,
   `src/i18n/config.ts`, `src/env.d.ts`
 - **Layouts/components** (9): `BaseLayout.astro`, `ArticleLayout.astro`,
@@ -24,8 +36,8 @@ grouped summary:
 - **Client-side engines** (3, vanilla TS, no framework):
   `quiz-engine.client.ts`, `results-view.client.ts`, `search.client.ts`
 - **Styles** (4): `tokens.css`, `global.css`, `quiz.css`, `results.css`
-- **Pages** (24 route files, generating 33 static pages across 1 live
-  locale): homepage, 6 category pages, 3× (test landing/take/results),
+- **Pages** (24 route files, generating 51 static pages across 1 live
+  locale): homepage, 6 category pages, 9× (test landing/take/results),
   guides hub + 4 guide pages, 10 legal/trust pages, search,
   root redirect shim, `robots.txt.ts`, `sitemap.xml.ts`, `llms.txt.ts`
 - **Tooling**: `scripts/validate-registry.ts` (registry/data integrity gate)
@@ -36,11 +48,16 @@ grouped summary:
 
 ## FILES MODIFIED
 
-None — greenfield build on an empty repository. (Two in-session bugfixes
-before commit: a double-slash URL bug in `BaseLayout.astro`'s hreflang
-generation, caught and fixed via direct HTML inspection of the build
-output before this commit — see git history for the single, already-fixed
-version.)
+Greenfield build on an empty repository, so "modified" below means changed
+within this same session/conversation, not a pre-existing codebase:
+
+- Two in-session bugfixes before the first commit: a double-slash URL bug
+  in `BaseLayout.astro`'s hreflang generation, caught and fixed via direct
+  HTML inspection of the build output.
+- Second scaling pass: `src/data/registry.ts` (6 entries flipped from
+  `planned` to `published` with full metadata), `src/data/tests/index.ts`
+  (6 new tests registered), `README.md` and `docs/final-report.md` (counts
+  updated), `docs/roadmap-60-tests.md` (regenerated from the registry).
 
 ## TESTS PUBLISHED
 
@@ -49,17 +66,29 @@ version.)
 | Anxiety Symptom Screening | A — Validated screening tool | GAD-7 (Spitzer et al., 2006; free-use confirmed via 2010 Pfizer release) | Mental Wellbeing |
 | Big Five Personality Test — Short | B — Public-domain scale | Mini-IPIP (Donnellan et al., 2006; IPIP public domain) | Personality |
 | Procrastination Tendencies | C — Evidence-informed | Original, platform-authored | Work & Productivity |
+| Burnout Warning Signs | C — Evidence-informed | Original, platform-authored | Mental Wellbeing |
+| Deep Work Readiness | C — Evidence-informed | Original, platform-authored | Work & Productivity |
+| Relationship Communication Style | C — Evidence-informed | Original, platform-authored | Relationships |
+| Digital Wellbeing Check | C — Evidence-informed | Original, platform-authored | Lifestyle |
+| Sleep Hygiene Check | C — Evidence-informed | Original, platform-authored | Lifestyle |
+| Job Satisfaction Check | C — Evidence-informed | Original, platform-authored | Career & Values |
 
-All three were smoke-tested end-to-end in a real browser (Playwright +
+The original 3 were smoke-tested end-to-end in a real browser (Playwright +
 headless Chromium against `astro preview`): landing page → Start → all
 questions answered → correct client-side scoring verified by hand
 (Extraversion sub-score math checked against reverse-scoring logic) →
 results page renders the matching band → localStorage-based resume
-verified by reloading mid-quiz. Zero console/page errors during the run.
+verified by reloading mid-quiz, zero console/page errors. The 6-test
+scaling pass was verified the same way plus an explicit check of all 6
+category pages (each now shows at least one published card) and a manual
+score check on Sleep Hygiene Check — the one test on the platform with
+inverted framing (higher score = healthier habits, not a warning sign) —
+confirming a 40/50 "all-Often" run correctly lands in the "Strong sleep
+hygiene habits" band.
 
 ## TESTS HELD FOR LICENSING REVIEW
 
-57 of the 60 roadmap tests are **not** published. Breakdown (see
+51 of the 60 roadmap tests are **not** published. Breakdown (see
 `docs/roadmap-60-tests.md` for the full per-test table and
 `docs/evidence-and-licensing-registry.md` for the reasoning):
 
@@ -74,10 +103,15 @@ verified by reloading mid-quiz. Zero console/page errors during the run.
   back**: Perceived Stress Scale (PSS-10) is confirmed copyrighted with
   commercial reproduction requiring a license from Mind Garden/Dr. Cohen,
   which this build does not hold.
-- **47 `planned`** — custom evidence-informed (Level C) roadmap slots with
+- **41 `planned`** — custom evidence-informed (Level C) roadmap slots with
   no licensing dependency, simply not authored yet (9 personality facet
-  tests, 9 productivity tests, 10 relationship tests, 9 lifestyle tests, 8
-  career tests, 1 burnout test).
+  tests, 8 productivity tests, 9 relationship tests, 7 lifestyle tests, 7
+  career tests). Six roadmap slots that were `planned` in the original
+  delivery — one per remaining empty category, plus a second mental-wellbeing
+  and lifestyle test — were authored and published in the second scaling
+  pass (see "TESTS PUBLISHED" above): Burnout Warning Signs, Deep Work
+  Readiness, Relationship Communication Style, Digital Wellbeing Check,
+  Sleep Hygiene Check, and Job Satisfaction Check.
 
 No test was force-published to hit a catalog-size target. This is enforced
 in code, not just editorially: `scripts/validate-registry.ts` fails the

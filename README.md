@@ -26,16 +26,24 @@ Node 18+ required.
 
 ## What's actually live right now
 
-Three fully working assessments, used as the Phase 2 templates the rest of
-the catalog will be built from:
+Nine fully working assessments — one per category, covering all six of the
+site's categories. The first three (below the divider) were the original
+Phase 2 templates (one per evidence level); the next six were added in a
+second scaling pass, all Level C (no licensing dependency):
 
-| Test | Evidence level | Instrument |
-|---|---|---|
-| [Anxiety Symptom Screening](/en/tests/anxiety-symptom-screening/) | A — Validated screening tool | GAD-7 (Spitzer et al., 2006) |
-| [Big Five Personality Test — Short](/en/tests/big-five-personality-short/) | B — Public-domain scale | Mini-IPIP (Donnellan et al., 2006) |
-| [Procrastination Tendencies](/en/tests/procrastination-tendencies/) | C — Evidence-informed | Original, platform-authored |
+| Test | Evidence level | Instrument | Category |
+|---|---|---|---|
+| [Anxiety Symptom Screening](/en/tests/anxiety-symptom-screening/) | A — Validated screening tool | GAD-7 (Spitzer et al., 2006) | Mental Wellbeing |
+| [Big Five Personality Test — Short](/en/tests/big-five-personality-short/) | B — Public-domain scale | Mini-IPIP (Donnellan et al., 2006) | Personality |
+| [Procrastination Tendencies](/en/tests/procrastination-tendencies/) | C — Evidence-informed | Original, platform-authored | Work & Productivity |
+| [Burnout Warning Signs](/en/tests/burnout-warning-signs/) | C — Evidence-informed | Original, platform-authored | Mental Wellbeing |
+| [Deep Work Readiness](/en/tests/deep-work-readiness/) | C — Evidence-informed | Original, platform-authored | Work & Productivity |
+| [Relationship Communication Style](/en/tests/relationship-communication-style/) | C — Evidence-informed | Original, platform-authored | Relationships |
+| [Digital Wellbeing Check](/en/tests/digital-wellbeing-check/) | C — Evidence-informed | Original, platform-authored | Lifestyle |
+| [Sleep Hygiene Check](/en/tests/sleep-hygiene-check/) | C — Evidence-informed | Original, platform-authored | Lifestyle |
+| [Job Satisfaction Check](/en/tests/job-satisfaction-check/) | C — Evidence-informed | Original, platform-authored | Career & Values |
 
-57 more roadmap tests exist as **registry entries only** — see
+51 more roadmap tests exist as **registry entries only** — see
 `src/data/registry.ts` — each tagged `published`, `draft`, `requires-review`,
 or `planned`. Nothing is routed, linked, or built for a test unless its
 registry status is `published`. This is enforced automatically by
