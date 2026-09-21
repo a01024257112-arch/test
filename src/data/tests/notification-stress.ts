@@ -1,0 +1,75 @@
+import type { TestDefinition } from '../../lib/types';
+
+/**
+ * Notification Stress — original, evidence-informed self-reflection quiz.
+ */
+export const notificationStress: TestDefinition = {
+  id: 'li-49',
+  slug: 'notification-stress',
+  registryId: 'li-49',
+  title: 'Notification Stress',
+  oneLiner: 'An evidence-informed self-reflection quiz on how much notifications interrupt and affect you.',
+  estimatedMinutes: [3, 4],
+  category: 'lifestyle',
+  evidenceLevel: 'C',
+  answerScale: [
+    { value: 1, label: 'Never' },
+    { value: 2, label: 'Rarely' },
+    { value: 3, label: 'Sometimes' },
+    { value: 4, label: 'Often' },
+    { value: 5, label: 'Very Often' },
+  ],
+  questions: [
+    { id: 'q1', prompt: 'A notification sound or buzz makes me feel a small jolt of alertness or tension.' },
+    { id: 'q2', prompt: 'I stop what I’m doing to check a notification, even when it isn’t urgent.' },
+    { id: 'q3', prompt: 'I feel like I need to respond quickly once I see a notification.' },
+    { id: 'q4', prompt: 'I lose my train of thought after a notification interrupts me.' },
+    { id: 'q5', prompt: 'I check my phone or computer preemptively, worried I might be missing something.' },
+    { id: 'q6', prompt: 'The number of unread notifications or badges bothers me.' },
+    { id: 'q7', prompt: 'I feel more on edge on days with a high volume of notifications.' },
+    { id: 'q8', prompt: 'Notifications interrupt time with other people.' },
+    { id: 'q9', prompt: 'I’ve tried turning off notifications and found it hard to keep them off.' },
+    { id: 'q10', prompt: 'A notification during focused work derails my concentration for longer than the interruption itself.' },
+  ],
+  scoring: { method: 'sum', minPossible: 10, maxPossible: 50 },
+  resultBands: [
+    {
+      id: 'lower', minScore: 10, maxScore: 23, label: 'Low notification stress',
+      shortInterpretation: 'Your responses show notifications aren’t significantly disrupting your focus or mood.',
+      whatItMeans: 'You reported infrequent interruption, urgency pressure, or lingering distraction from notifications. Your current setup doesn’t show the pattern this quiz was designed to flag.',
+      whatItDoesNotMean: 'This doesn’t mean you receive no notifications — it reflects how much they affect you, not how many there are.',
+      strongestPatterns: ['Notifications appear to be manageable background noise rather than a source of tension.'],
+      areasToWatch: ['Worth rechecking if your notification volume increases (new job, new apps).'],
+      suggestedNextSteps: ['No specific action is indicated by this result alone.'],
+    },
+    {
+      id: 'moderate', minScore: 24, maxScore: 36, label: 'Moderate notification stress',
+      shortInterpretation: 'Your responses describe a mixed pattern — some notifications feel manageable, others genuinely disruptive.',
+      whatItMeans: 'You reported a middle range of interruption and urgency pressure. This is a common pattern for people managing multiple apps, chats, or work channels.',
+      whatItDoesNotMean: 'A moderate score doesn’t mean you’re overly sensitive — notification design is built to capture attention, so a reaction to it is a normal response, not a personal weakness.',
+      strongestPatterns: ['Certain notification types (work chat, social apps) may be bigger triggers than others.'],
+      areasToWatch: ['Notice whether the interruption cost (item 10) is bigger than the notification itself — that’s often the real hidden cost.'],
+      suggestedNextSteps: ['Try turning off notifications for your single most disruptive app first, rather than everything at once.', 'The Digital Wellbeing Check and Deep Work Readiness tests explore related territory.'],
+    },
+    {
+      id: 'higher', minScore: 37, maxScore: 50, label: 'High notification stress',
+      shortInterpretation: 'Your responses show notifications frequently interrupt your focus and affect how you feel.',
+      whatItMeans: 'You reported frequent interruption, urgency pressure, and difficulty keeping notifications off even when you’ve tried. This aligns with research on how frequent alerts contribute to attention fragmentation.',
+      whatItDoesNotMean: 'This isn’t a personal weakness — notification systems are deliberately designed to be attention-grabbing, and a strong reaction to them is a predictable response, not a flaw.',
+      strongestPatterns: ['Interruptions appear to have a cost beyond the moment itself (item 10 — lost focus afterward).', 'Difficulty sustaining a "notifications off" change (item 9) suggests default settings or app design may be working against you.'],
+      areasToWatch: ['Notification-driven tension during time with others (item 8) is worth addressing directly if it’s affecting relationships.'],
+      suggestedNextSteps: ['Consider a structural change — scheduled "do not disturb" windows — rather than relying on willpower to ignore notifications in the moment.', 'The Digital Wellbeing Check and Sleep Hygiene Check tests look at two areas notification stress commonly spills into.'],
+    },
+  ],
+  whatItMeasures: 'This quiz measures how often notifications interrupt your focus, create urgency pressure, or leave a lingering effect on your mood or concentration.',
+  whoItIsFor: 'Anyone who wants a structured way to reflect on how notifications affect them. It is a self-reflection tool, not a clinical instrument.',
+  howScoringWorks: 'Each of the 10 items is rated from 1 ("Never") to 5 ("Very Often") and summed for a total between 10 and 50, divided into three descriptive bands.',
+  scientificBasis: 'Item content was written for this platform, informed by general research on interruption costs, attention fragmentation, and notification-driven urgency, without reproducing any specific copyrighted instrument.',
+  limitations: [
+    'An original tool, not a peer-reviewed or independently validated psychometric instrument.',
+    'Reflects self-reported frequency, not measured notification volume or physiological stress response.',
+  ],
+  relatedTestSlugs: ['digital-wellbeing-check', 'deep-work-readiness', 'smartphone-habit-check', 'sleep-hygiene-check'],
+  relatedGuideSlugs: ['how-online-self-assessments-work'],
+  crisisNoteRequired: false,
+};

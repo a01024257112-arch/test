@@ -3,31 +3,35 @@
 Built from an empty repository as a static Astro + TypeScript site,
 following the phased approach the brief specified: Phase 1 architecture →
 Phase 2 three working templates → Phase 3 roadmap scaffolding for the
-remaining catalog → Phase 4 QA pass. 51 pages currently build; the project
+remaining catalog → Phase 4 QA pass. 75 pages currently build; the project
 compiles clean (`astro check`: 0 errors/warnings) and the quiz flow was
 smoke-tested end-to-end in a real headless-Chromium session.
 
-> **Update — second scaling pass:** after the initial Phase 2 delivery (3
-> tests, one per evidence level), the catalog was expanded to **9 published
-> tests** by authoring 6 additional Level C (evidence-informed, no
-> licensing dependency) assessments — one per remaining empty category, so
-> all 6 categories now have live content. See "TESTS PUBLISHED" below for
-> the full current list; the original 3-test Phase 2 narrative is preserved
-> in the paragraphs that reference it.
+> **Update — two scaling passes:** after the initial Phase 2 delivery (3
+> tests, one per evidence level), the catalog was expanded to 9 published
+> tests (one Level C test per remaining empty category), then again to
+> **17 published tests** by authoring 8 more Level C (evidence-informed, no
+> licensing dependency) assessments across productivity, relationships,
+> lifestyle, and career. See "TESTS PUBLISHED" below for the full current
+> list; the original 3-test Phase 2 narrative is preserved in the
+> paragraphs that reference it.
 
 ## FILES CREATED
 
 63 files in the original Phase 1-2 delivery (empty repo, no prior commits),
-plus 6 more test-definition files and doc/registry updates in the second
-scaling pass. Full list in the repo; grouped summary (counts below include
-the scaling pass):
+plus 14 more test-definition files and doc/registry updates across two
+scaling passes. Full list in the repo; grouped summary (counts below
+include both scaling passes):
 
 - **Config**: `astro.config.mjs`, `tsconfig.json`, `package.json`, `.gitignore`
-- **Data model & content** (17): `src/lib/types.ts`, `src/data/registry.ts`
+- **Data model & content** (25): `src/lib/types.ts`, `src/data/registry.ts`
   (all 60 roadmap entries), `src/data/tests/{index,anxiety-symptom-screening,
   big-five-personality-short,procrastination-tendencies,burnout-warning-signs,
-  deep-work-readiness,relationship-communication-style,digital-wellbeing-check,
-  sleep-hygiene-check,job-satisfaction-check}.ts`,
+  deep-work-readiness,meeting-overload-check,work-boundary-check,
+  relationship-communication-style,conflict-response-style,boundary-setting,
+  digital-wellbeing-check,sleep-hygiene-check,notification-stress,
+  exercise-consistency,job-satisfaction-check,work-motivation,
+  career-decision-confidence}.ts`,
   `src/data/guides.ts`, `src/lib/categories.ts`, `src/lib/structured-data.ts`,
   `src/i18n/config.ts`, `src/env.d.ts`
 - **Layouts/components** (9): `BaseLayout.astro`, `ArticleLayout.astro`,
@@ -36,8 +40,8 @@ the scaling pass):
 - **Client-side engines** (3, vanilla TS, no framework):
   `quiz-engine.client.ts`, `results-view.client.ts`, `search.client.ts`
 - **Styles** (4): `tokens.css`, `global.css`, `quiz.css`, `results.css`
-- **Pages** (24 route files, generating 51 static pages across 1 live
-  locale): homepage, 6 category pages, 9× (test landing/take/results),
+- **Pages** (24 route files, generating 75 static pages across 1 live
+  locale): homepage, 6 category pages, 17× (test landing/take/results),
   guides hub + 4 guide pages, 10 legal/trust pages, search,
   root redirect shim, `robots.txt.ts`, `sitemap.xml.ts`, `llms.txt.ts`
 - **Tooling**: `scripts/validate-registry.ts` (registry/data integrity gate)
@@ -54,6 +58,10 @@ within this same session/conversation, not a pre-existing codebase:
 - Two in-session bugfixes before the first commit: a double-slash URL bug
   in `BaseLayout.astro`'s hreflang generation, caught and fixed via direct
   HTML inspection of the build output.
+- Third pass: same registry/index/README/final-report/roadmap files updated
+  again for the 8-test expansion (Meeting Overload Check, Work Boundary
+  Check, Conflict Response Style, Boundary Setting, Notification Stress,
+  Exercise Consistency, Work Motivation, Career Decision Confidence).
 - Second scaling pass: `src/data/registry.ts` (6 entries flipped from
   `planned` to `published` with full metadata), `src/data/tests/index.ts`
   (6 new tests registered), `README.md` and `docs/final-report.md` (counts
@@ -69,9 +77,18 @@ within this same session/conversation, not a pre-existing codebase:
 | Burnout Warning Signs | C — Evidence-informed | Original, platform-authored | Mental Wellbeing |
 | Deep Work Readiness | C — Evidence-informed | Original, platform-authored | Work & Productivity |
 | Relationship Communication Style | C — Evidence-informed | Original, platform-authored | Relationships |
+| Meeting Overload Check | C — Evidence-informed | Original, platform-authored | Work & Productivity |
+| Work Boundary Check | C — Evidence-informed | Original, platform-authored | Work & Productivity |
+| Relationship Communication Style | C — Evidence-informed | Original, platform-authored | Relationships |
+| Conflict Response Style | C — Evidence-informed | Original, platform-authored | Relationships |
+| Boundary Setting | C — Evidence-informed | Original, platform-authored | Relationships |
 | Digital Wellbeing Check | C — Evidence-informed | Original, platform-authored | Lifestyle |
 | Sleep Hygiene Check | C — Evidence-informed | Original, platform-authored | Lifestyle |
+| Notification Stress | C — Evidence-informed | Original, platform-authored | Lifestyle |
+| Exercise Consistency | C — Evidence-informed | Original, platform-authored | Lifestyle |
 | Job Satisfaction Check | C — Evidence-informed | Original, platform-authored | Career & Values |
+| Work Motivation | C — Evidence-informed | Original, platform-authored | Career & Values |
+| Career Decision Confidence | C — Evidence-informed | Original, platform-authored | Career & Values |
 
 The original 3 were smoke-tested end-to-end in a real browser (Playwright +
 headless Chromium against `astro preview`): landing page → Start → all
@@ -84,11 +101,16 @@ category pages (each now shows at least one published card) and a manual
 score check on Sleep Hygiene Check — the one test on the platform with
 inverted framing (higher score = healthier habits, not a warning sign) —
 confirming a 40/50 "all-Often" run correctly lands in the "Strong sleep
-hygiene habits" band.
+hygiene habits" band. The 8-test scaling pass was verified the same way:
+`npm run test:data` (17/17 consistent), `astro check` clean, a fresh
+build, and a headless-Chromium pass confirming all 6 category pages show
+the expected card counts (2/1/4/3/4/3 = 17) plus a manual score check on
+Work Motivation (a positively-framed test) confirming an all-"Strongly
+Agree" run scores 50/50 and lands in "Strong current motivation."
 
 ## TESTS HELD FOR LICENSING REVIEW
 
-51 of the 60 roadmap tests are **not** published. Breakdown (see
+43 of the 60 roadmap tests are **not** published. Breakdown (see
 `docs/roadmap-60-tests.md` for the full per-test table and
 `docs/evidence-and-licensing-registry.md` for the reasoning):
 
@@ -103,15 +125,16 @@ hygiene habits" band.
   back**: Perceived Stress Scale (PSS-10) is confirmed copyrighted with
   commercial reproduction requiring a license from Mind Garden/Dr. Cohen,
   which this build does not hold.
-- **41 `planned`** — custom evidence-informed (Level C) roadmap slots with
-  no licensing dependency, simply not authored yet (9 personality facet
-  tests, 8 productivity tests, 9 relationship tests, 7 lifestyle tests, 7
-  career tests). Six roadmap slots that were `planned` in the original
-  delivery — one per remaining empty category, plus a second mental-wellbeing
-  and lifestyle test — were authored and published in the second scaling
-  pass (see "TESTS PUBLISHED" above): Burnout Warning Signs, Deep Work
-  Readiness, Relationship Communication Style, Digital Wellbeing Check,
-  Sleep Hygiene Check, and Job Satisfaction Check.
+- **33 `planned`** — custom evidence-informed (Level C) roadmap slots with
+  no licensing dependency, simply not authored yet (10 personality facet
+  tests, 6 productivity tests, 7 relationship tests, 5 lifestyle tests, 5
+  career tests). Fourteen roadmap slots that were `planned` in the original
+  delivery were authored and published across two scaling passes (see
+  "TESTS PUBLISHED" above): Burnout Warning Signs, Deep Work Readiness,
+  Meeting Overload Check, Work Boundary Check, Relationship Communication
+  Style, Conflict Response Style, Boundary Setting, Digital Wellbeing
+  Check, Sleep Hygiene Check, Notification Stress, Exercise Consistency,
+  Job Satisfaction Check, Work Motivation, and Career Decision Confidence.
 
 No test was force-published to hit a catalog-size target. This is enforced
 in code, not just editorially: `scripts/validate-registry.ts` fails the

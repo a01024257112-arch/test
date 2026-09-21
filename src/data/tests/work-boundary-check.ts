@@ -1,0 +1,76 @@
+import type { TestDefinition } from '../../lib/types';
+
+/**
+ * Work Boundary Check — original, evidence-informed self-reflection quiz.
+ */
+export const workBoundaryCheck: TestDefinition = {
+  id: 'wp-28',
+  slug: 'work-boundary-check',
+  registryId: 'wp-28',
+  title: 'Work Boundary Check',
+  oneLiner: 'An evidence-informed self-reflection quiz on how well work stays contained to work time.',
+  estimatedMinutes: [3, 4],
+  category: 'productivity',
+  evidenceLevel: 'C',
+  answerScale: [
+    { value: 1, label: 'Never' },
+    { value: 2, label: 'Rarely' },
+    { value: 3, label: 'Sometimes' },
+    { value: 4, label: 'Often' },
+    { value: 5, label: 'Very Often' },
+  ],
+  questions: [
+    { id: 'q1', prompt: 'I check work messages or email outside of my working hours.' },
+    { id: 'q2', prompt: 'I feel obligated to respond quickly to work messages even during personal time.' },
+    { id: 'q3', prompt: 'I work through lunch or skip breaks to keep up.' },
+    { id: 'q4', prompt: 'I say yes to work requests that go beyond what I can reasonably handle.' },
+    { id: 'q5', prompt: 'I think about work problems during time that’s meant to be personal or restful.' },
+    { id: 'q6', prompt: 'I let work run late into the evening on a regular basis.' },
+    { id: 'q7', prompt: 'I feel guilty logging off while others are still working.' },
+    { id: 'q8', prompt: 'I have trouble fully disconnecting during vacation or time off.' },
+    { id: 'q9', prompt: 'I take on tasks outside my role because it feels easier than saying no.' },
+    { id: 'q10', prompt: 'My personal time gets interrupted by work-related notifications.' },
+  ],
+  scoring: { method: 'sum', minPossible: 10, maxPossible: 50 },
+  resultBands: [
+    {
+      id: 'lower', minScore: 10, maxScore: 23, label: 'Well-maintained work boundaries',
+      shortInterpretation: 'Your responses show work is generally staying contained to work time.',
+      whatItMeans: 'You reported infrequent after-hours checking, guilt about logging off, or difficulty disconnecting. Your current boundaries don’t show the pattern this quiz was designed to flag.',
+      whatItDoesNotMean: 'This doesn’t mean you’re under-committed at work — strong boundaries and strong engagement aren’t opposites.',
+      strongestPatterns: ['Personal time appears largely protected from work intrusion.'],
+      areasToWatch: ['Worth rechecking during high-pressure periods or after a role change, when boundaries often erode first.'],
+      suggestedNextSteps: ['No specific action is indicated by this result alone.'],
+    },
+    {
+      id: 'moderate', minScore: 24, maxScore: 36, label: 'Some boundary erosion',
+      shortInterpretation: 'Your responses describe a mixed pattern — some protected time, alongside regular work intrusion.',
+      whatItMeans: 'You reported a middle range across after-hours checking, difficulty saying no, and trouble disconnecting. This is an extremely common pattern, especially in always-connected or understaffed environments.',
+      whatItDoesNotMean: 'A moderate score doesn’t mean you lack discipline — boundary erosion is often driven as much by workplace norms and expectations as by individual habits.',
+      strongestPatterns: ['Certain moments (evenings, vacation) may be more vulnerable to work intrusion than others.'],
+      areasToWatch: ['Notice whether guilt (item 7) or actual expectation is driving the behavior — they call for different responses.'],
+      suggestedNextSteps: ['Consider one concrete boundary — like notifications off after a set time — rather than a vague goal to "work less."', 'The Burnout Warning Signs and Meeting Overload Check tests explore closely related territory.'],
+    },
+    {
+      id: 'higher', minScore: 37, maxScore: 50, label: 'Significant boundary erosion',
+      shortInterpretation: 'Your responses show work is frequently spilling into time meant to be personal or restful.',
+      whatItMeans: 'You reported frequent after-hours checking, guilt about disconnecting, and difficulty stepping away, even during vacation. Research on work-life boundaries links this pattern to increased strain over time.',
+      whatItDoesNotMean: 'This isn’t a sign of poor discipline — always-on culture, staffing pressure, and unclear expectations often drive this more than individual choices.',
+      strongestPatterns: ['Difficulty disconnecting appears to extend even to protected time like vacation (item 8).', 'Guilt about logging off (item 7) suggests an internalized expectation, not just external demand.'],
+      areasToWatch: ['This pattern is closely linked to burnout — consider taking the Burnout Warning Signs test as well.'],
+      suggestedNextSteps: ['Consider what one boundary, if you set it consistently, would make the biggest difference — and whether that requires a conversation with a manager rather than just a personal habit change.', 'If this is affecting your wellbeing broadly, it may be worth discussing with a manager, HR, or a professional.'],
+    },
+  ],
+  whatItMeasures: 'This quiz measures how often work responsibilities intrude on time meant to be personal, restful, or off-duty.',
+  whoItIsFor: 'Anyone who wants a structured way to reflect on their work-life boundaries. It is a self-reflection tool, not a workplace policy audit.',
+  howScoringWorks: 'Each of the 10 items is rated from 1 ("Never") to 5 ("Very Often") and summed for a total between 10 and 50, divided into three descriptive bands. A higher score describes more frequent signs of work intruding on personal time.',
+  scientificBasis: 'Item content was written for this platform, informed by general research on work-life boundary management and "always-on" work culture, without reproducing any specific copyrighted instrument.',
+  limitations: [
+    'An original tool, not a peer-reviewed or independently validated psychometric instrument.',
+    'Reflects self-reported frequency, not an audit of actual work hours.',
+    'Boundary norms vary by role, industry, and employer, which a personal quiz can’t fully capture.',
+  ],
+  relatedTestSlugs: ['burnout-warning-signs', 'meeting-overload-check', 'deep-work-readiness', 'notification-stress'],
+  relatedGuideSlugs: ['how-online-self-assessments-work'],
+  crisisNoteRequired: false,
+};

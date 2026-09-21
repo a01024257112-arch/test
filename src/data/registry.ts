@@ -292,9 +292,47 @@ export const registry: RegistryEntry[] = [
     status: 'published',
     statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general research on focused attention and task-switching costs, without reproducing any specific copyrighted instrument.',
   }),
+  base({
+    id: 'wp-26', name: 'Meeting Overload Check', slug: 'meeting-overload-check',
+    category: 'productivity', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 10 original Likert items (1-5 frequency scale). Range 10-50.',
+    cutoffMethod: 'Descriptive bands (few / some / multiple signs of overload) — informational only, not a clinical or organizational cutoff.',
+    targetPopulation: 'Working adults whose role involves regular meetings.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Reflects self-reported frequency, not an audit of actual calendar data.',
+      'Meeting culture varies enormously by team and organization.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Rogelberg, S. G.', work: 'The Surprising Science of Meetings: How You Can Lead Your Team to Peak Performance', year: 2019, publisher: 'Oxford University Press', url: 'https://global.oup.com/academic/product/the-surprising-science-of-meetings-9780190689216' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general research and industry literature on meeting load and its effect on focused work.',
+  }),
+  base({
+    id: 'wp-28', name: 'Work Boundary Check', slug: 'work-boundary-check',
+    category: 'productivity', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 10 original Likert items (1-5 frequency scale). Range 10-50.',
+    cutoffMethod: 'Descriptive bands (well-maintained / some erosion / significant erosion) — informational only, not a clinical cutoff.',
+    targetPopulation: 'Working adults reflecting on work-life boundaries.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Reflects self-reported frequency, not an audit of actual work hours.',
+      'Boundary norms vary by role, industry, and employer.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Kreiner, G. E., Hollensbe, E. C., & Sheep, M. L.', work: 'Balancing Borders and Bridges: Negotiating the Work-Home Interface via Boundary Work Tactics', year: 2009, publisher: 'Academy of Management Journal', doi: '10.5465/amj.2009.41328651', url: 'https://doi.org/10.5465/amj.2009.41328651' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general research on work-life boundary management.',
+  }),
   ...([
-    ['wp-25', 'Focus Environment Test'], ['wp-26', 'Meeting Overload Check'], ['wp-27', 'Remote Work Fit'],
-    ['wp-28', 'Work Boundary Check'], ['wp-29', 'Decision-Making Style'], ['wp-30', 'Feedback Preference'],
+    ['wp-25', 'Focus Environment Test'], ['wp-27', 'Remote Work Fit'],
+    ['wp-29', 'Decision-Making Style'], ['wp-30', 'Feedback Preference'],
     ['wp-31', 'Leadership Tendencies'], ['wp-32', 'Team Collaboration Style'],
   ] as const).map(([id, name]) =>
     base({
@@ -325,8 +363,46 @@ export const registry: RegistryEntry[] = [
     status: 'published',
     statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general relationship-communication research, without reproducing any specific copyrighted instrument or validated typology.',
   }),
+  base({
+    id: 're-34', name: 'Conflict Response Style', slug: 'conflict-response-style',
+    category: 'relationships', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 10 original Likert items (1-5 frequency scale). Range 10-50. Describes a style continuum, not a good/bad score.',
+    cutoffMethod: 'Descriptive style bands (more withdrawing / blended / more engaging) — a style description, not a clinical cutoff. No band is presented as superior.',
+    targetPopulation: 'Adults reflecting on their conflict habits in close relationships.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale or typology.',
+      'Conflict style often varies by specific relationship or issue, which a single score cannot fully capture.',
+      'Reflects self-reported tendency, not the other person’s experience of the conflict.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Caughlin, J. P., & Scott, A. M.', work: 'Toward a Communication Theory of the Demand/Withdraw Pattern of Interaction', year: 2010, publisher: 'Studies in Applied Interpersonal Communication', url: 'https://doi.org/10.4135/9781483349619.n5' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general relationship-conflict research on engagement versus withdrawal, without reproducing any specific copyrighted instrument or validated typology.',
+  }),
+  base({
+    id: 're-35', name: 'Boundary Setting', slug: 'boundary-setting',
+    category: 'relationships', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 10 original Likert items (1-5 frequency scale). Range 10-50. Higher = more frequent, comfortable boundary-setting.',
+    cutoffMethod: 'Descriptive bands (difficult / mixed / comfortable) — informational only, not a clinical cutoff.',
+    targetPopulation: 'Adults reflecting on their boundary-setting habits in relationships.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Boundary comfort often varies by specific relationship, which a single score cannot fully capture.',
+      'Reflects self-reported tendency, not observed behavior.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Cloud, H., & Townsend, J.', work: 'Boundaries: When to Say Yes, How to Say No to Take Control of Your Life', year: 1992, publisher: 'Zondervan', url: 'https://www.zondervan.com/' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general relationship and clinical-psychology writing on boundary-setting.',
+  }),
   ...([
-    ['re-34', 'Conflict Response Style'], ['re-35', 'Boundary Setting'], ['re-36', 'Trust Tendencies'],
+    ['re-36', 'Trust Tendencies'],
     ['re-37', 'Jealousy Triggers'], ['re-38', 'Emotional Availability'], ['re-39', 'Friendship Style'],
     ['re-40', 'Social Energy'], ['re-41', 'Dating Expectations'], ['re-42', 'Relationship Maintenance Habits'],
   ] as const).map(([id, name]) =>
@@ -384,9 +460,46 @@ export const registry: RegistryEntry[] = [
     status: 'published',
     statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general research on habitual technology use, without reproducing any specific copyrighted instrument or making a clinical addiction claim.',
   }),
+  base({
+    id: 'li-49', name: 'Notification Stress', slug: 'notification-stress',
+    category: 'lifestyle', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 10 original Likert items (1-5 frequency scale). Range 10-50.',
+    cutoffMethod: 'Descriptive bands (low / moderate / high notification stress) — informational only, not a clinical cutoff.',
+    targetPopulation: 'Adults reflecting on how notifications affect their focus and mood.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Reflects self-reported frequency, not measured notification volume or physiological stress response.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Mark, G., Gudith, D., & Klocke, U.', work: 'The Cost of Interrupted Work: More Speed and Stress', year: 2008, publisher: 'Proceedings of the SIGCHI Conference on Human Factors in Computing Systems', doi: '10.1145/1357054.1357072', url: 'https://doi.org/10.1145/1357054.1357072' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general research on interruption costs and attention fragmentation.',
+  }),
+  base({
+    id: 'li-51', name: 'Exercise Consistency', slug: 'exercise-consistency',
+    category: 'lifestyle', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 10 original Likert items (1-5 frequency scale). Range 10-50. Higher = more consistent activity habits.',
+    cutoffMethod: 'Descriptive bands (room to build / somewhat consistent / consistent) — informational only, not a fitness or medical cutoff.',
+    targetPopulation: 'Adults reflecting on their physical activity habits.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Measures consistency of habit, not fitness level, intensity, or health outcomes.',
+      'Does not account for physical limitations or medical conditions.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Kaushal, N., & Rhodes, R. E.', work: 'Exercise habit formation in new gym members: A longitudinal study', year: 2015, publisher: 'Journal of Behavioral Medicine', doi: '10.1007/s10865-015-9640-7', url: 'https://doi.org/10.1007/s10865-015-9640-7' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general behavioral research on habit consistency and intrinsic motivation for physical activity.',
+  }),
   ...([
     ['li-45', 'Sleep Debt Check'], ['li-47', 'Smartphone Habit Check'], ['li-48', 'Social Media Habit Check'],
-    ['li-49', 'Notification Stress'], ['li-50', 'Caffeine Timing Habits'], ['li-51', 'Exercise Consistency'], ['li-52', 'Recovery Routine'],
+    ['li-50', 'Caffeine Timing Habits'], ['li-52', 'Recovery Routine'],
   ] as const).map(([id, name]) =>
     base({
       id, name, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
@@ -416,9 +529,47 @@ export const registry: RegistryEntry[] = [
     status: 'published',
     statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general organizational-psychology research on job-satisfaction drivers, without reproducing any specific copyrighted instrument.',
   }),
+  base({
+    id: 'ca-58', name: 'Work Motivation', slug: 'work-motivation',
+    category: 'career', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 10 original Likert items (1-5 agreement scale). Range 10-50. Higher = stronger self-reported motivation.',
+    cutoffMethod: 'Descriptive bands (lower / mixed / strong motivation) — informational only, not a validated organizational-psychology cutoff.',
+    targetPopulation: 'Working adults reflecting on their current motivation at work.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Reflects a snapshot in time; motivation can shift with workload, role changes, or life circumstances.',
+      'A single total score can mask very different underlying pictures across specific tasks or projects.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Ryan, R. M., & Deci, E. L.', work: 'Self-Determination Theory and the Facilitation of Intrinsic Motivation, Social Development, and Well-Being', year: 2000, publisher: 'American Psychologist', doi: '10.1037/0003-066X.55.1.68', url: 'https://doi.org/10.1037/0003-066X.55.1.68' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general motivation research (e.g., self-determination theory) without reproducing any specific copyrighted instrument.',
+  }),
+  base({
+    id: 'ca-59', name: 'Career Decision Confidence', slug: 'career-decision-confidence',
+    category: 'career', evidenceLevel: 'C', assessmentType: 'evidence-informed',
+    scoringMethod: 'Sum of 10 original Likert items (1-5 agreement scale). Range 10-50. Higher = more self-reported confidence.',
+    cutoffMethod: 'Descriptive bands (lower / mixed / higher confidence) — informational only, not a validated career-counseling cutoff.',
+    targetPopulation: 'Adults currently facing or considering a career decision.',
+    limitations: [
+      'An original, evidence-informed self-reflection tool — not a validated psychometric scale.',
+      'Reflects a snapshot in time; confidence can shift significantly as a decision unfolds.',
+      'Does not assess the quality or suitability of any specific career option.',
+    ],
+    disclaimer: 'This is an evidence-informed self-reflection assessment, not a clinically validated psychological test.',
+    reviewStatus: 'editorial-review-pending', lastReviewed: '2026-09-21',
+    references: [
+      { author: 'Betz, N. E., & Luzzo, D. A.', work: 'Career Assessment and the Career Decision-Making Self-Efficacy Scale', year: 1996, publisher: 'Journal of Career Assessment', doi: '10.1177/106907279600400405', url: 'https://doi.org/10.1177/106907279600400405' },
+    ],
+    status: 'published',
+    statusReason: 'Original items written for this platform; no third-party licensing dependency. Informed by general career-development research on decision-making self-efficacy, without reproducing any specific copyrighted instrument.',
+  }),
   ...([
     ['ca-53', 'Career Values'], ['ca-55', 'Job Change Readiness'], ['ca-56', 'Entrepreneurial Work Style'],
-    ['ca-57', 'Learning Preferences'], ['ca-58', 'Work Motivation'], ['ca-59', 'Career Decision Confidence'], ['ca-60', 'Workplace Strengths'],
+    ['ca-57', 'Learning Preferences'], ['ca-60', 'Workplace Strengths'],
   ] as const).map(([id, name]) =>
     base({
       id, name, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),

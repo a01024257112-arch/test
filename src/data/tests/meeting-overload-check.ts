@@ -1,0 +1,76 @@
+import type { TestDefinition } from '../../lib/types';
+
+/**
+ * Meeting Overload Check — original, evidence-informed self-reflection quiz.
+ */
+export const meetingOverloadCheck: TestDefinition = {
+  id: 'wp-26',
+  slug: 'meeting-overload-check',
+  registryId: 'wp-26',
+  title: 'Meeting Overload Check',
+  oneLiner: 'An evidence-informed self-reflection quiz on how much meetings are crowding out your actual work.',
+  estimatedMinutes: [3, 4],
+  category: 'productivity',
+  evidenceLevel: 'C',
+  answerScale: [
+    { value: 1, label: 'Never' },
+    { value: 2, label: 'Rarely' },
+    { value: 3, label: 'Sometimes' },
+    { value: 4, label: 'Often' },
+    { value: 5, label: 'Very Often' },
+  ],
+  questions: [
+    { id: 'q1', prompt: 'I have back-to-back meetings with no real breaks between them.' },
+    { id: 'q2', prompt: 'I leave a meeting unsure what decision was made or what happens next.' },
+    { id: 'q3', prompt: 'I attend meetings where my presence doesn’t seem necessary.' },
+    { id: 'q4', prompt: 'I have to do my actual focused work outside normal hours because the day is full of meetings.' },
+    { id: 'q5', prompt: 'I multitask or half-pay-attention during meetings because there are too many to fully engage with.' },
+    { id: 'q6', prompt: 'A meeting could have been an email or a short written update instead.' },
+    { id: 'q7', prompt: 'I feel mentally drained specifically from the volume of meetings, not the work itself.' },
+    { id: 'q8', prompt: 'I have little say over whether I’m added to a given meeting.' },
+    { id: 'q9', prompt: 'Meetings run over their scheduled time.' },
+    { id: 'q10', prompt: 'I struggle to find blocks of 60+ uninterrupted minutes in a typical day.' },
+  ],
+  scoring: { method: 'sum', minPossible: 10, maxPossible: 50 },
+  resultBands: [
+    {
+      id: 'lower', minScore: 10, maxScore: 23, label: 'Few signs of meeting overload',
+      shortInterpretation: 'Your responses show meetings aren’t significantly crowding out your focused work.',
+      whatItMeans: 'You reported infrequent back-to-back scheduling, unclear outcomes, or unnecessary attendance. Your meeting load doesn’t show the pattern this quiz was designed to flag.',
+      whatItDoesNotMean: 'This doesn’t mean you have no meetings, or that your workload is light overall — it specifically reflects meeting-driven fragmentation.',
+      strongestPatterns: ['Meetings appear to leave room for focused work.', 'Attendance seems generally purposeful rather than automatic.'],
+      areasToWatch: ['Worth rechecking after a role or team change, when meeting culture often shifts.'],
+      suggestedNextSteps: ['No specific action is indicated by this result alone.'],
+    },
+    {
+      id: 'moderate', minScore: 24, maxScore: 36, label: 'Some signs of meeting overload',
+      shortInterpretation: 'Your responses describe a mixed pattern — some days manageable, others fragmented by meetings.',
+      whatItMeans: 'You reported a middle range across scheduling density, unclear outcomes, and unnecessary attendance. This is a common pattern in collaborative or cross-functional roles.',
+      whatItDoesNotMean: 'A moderate score doesn’t mean meetings are inherently bad — many are genuinely useful; this quiz is about volume and fragmentation specifically.',
+      strongestPatterns: ['Certain meeting types (recurring status updates, large groups) are likely the biggest contributors.'],
+      areasToWatch: ['Notice which specific meetings you’d cut first if you could — that’s usually a clear signal.'],
+      suggestedNextSteps: ['Try auditing one week of meetings and flagging which ones could become an async update instead.', 'The Deep Work Readiness and Focus Environment Test explore the flip side of this — protecting the time meetings compete with.'],
+    },
+    {
+      id: 'higher', minScore: 37, maxScore: 50, label: 'Multiple signs of meeting overload',
+      shortInterpretation: 'Your responses show meetings are frequently crowding out focused work and leaving you drained.',
+      whatItMeans: 'You reported frequent back-to-back scheduling, unclear outcomes, low control over attendance, and difficulty finding uninterrupted work blocks — a pattern widely discussed in research and industry literature on "meeting overload."',
+      whatItDoesNotMean: 'This isn’t a personal failing or a sign you’re bad at managing your calendar — much of this is often driven by team or organizational norms outside any one person’s control.',
+      strongestPatterns: ['Meeting density appears to be directly limiting focused work time (items 4, 10).', 'Attendance may be more automatic than intentional (item 8).'],
+      areasToWatch: ['Doing focused work outside normal hours to compensate (item 4) is worth addressing directly — it tends to compound into broader overwork.'],
+      suggestedNextSteps: ['Consider proposing "no meeting" blocks or auditing recurring meetings for necessity.', 'If attendance isn’t within your control, a direct conversation with whoever sets meeting norms on your team may be more effective than personal workarounds alone.'],
+    },
+  ],
+  whatItMeasures: 'This quiz measures how often meeting volume, scheduling density, and unclear meeting outcomes interfere with your ability to do focused work.',
+  whoItIsFor: 'Anyone whose work involves regular meetings and who wants a structured way to reflect on whether meeting load is a problem. It is a self-reflection tool, not an organizational audit.',
+  howScoringWorks: 'Each of the 10 items is rated from 1 ("Never") to 5 ("Very Often") and summed for a total between 10 and 50, divided into three descriptive bands. A higher score describes more frequent signs of meeting overload.',
+  scientificBasis: 'Item content was written for this platform, informed by general research and industry literature on meeting load, scheduling fragmentation, and its effects on focused work, without reproducing any specific copyrighted instrument.',
+  limitations: [
+    'An original tool, not a peer-reviewed or independently validated psychometric instrument.',
+    'Reflects self-reported frequency, not an audit of actual calendar data.',
+    'Meeting culture varies enormously by team and organization, which a personal quiz can’t fully capture.',
+  ],
+  relatedTestSlugs: ['deep-work-readiness', 'work-boundary-check', 'burnout-warning-signs', 'focus-environment-test'],
+  relatedGuideSlugs: ['how-online-self-assessments-work'],
+  crisisNoteRequired: false,
+};
